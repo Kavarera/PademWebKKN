@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 
-AppBar GetCoreAppBar(String title, int state) {
+AppBar GetCoreAppBar(String title) {
   return AppBar(
     title: Text(title),
     backgroundColor: CustomColors.OLIVE_GREEN,
@@ -17,7 +17,7 @@ AppBar GetCoreAppBar(String title, int state) {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Text("Beranda"),
           decoration: BoxDecoration(
-            color: state == 1 ? CustomColors.BRONZE : Colors.transparent,
+            color: CustomColors.BRONZE,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: Colors.white,
