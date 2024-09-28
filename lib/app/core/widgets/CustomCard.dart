@@ -8,7 +8,7 @@ Widget CustomCard(List<Map<String, String>> items, double width) {
     ratio = 16 / 9;
   } else if (width < 720) {
     cardWidth = (width - 48) / 2;
-    ratio = 2 / 3;
+    ratio = 1;
   } else {
     cardWidth = (width - 80) / 4;
     ratio = 3 / 4;
