@@ -73,7 +73,6 @@ class LandingPageView extends GetView<LandingPageController> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: Obx(() {
-          log('State change');
           return getCoreAppBar('Padem Pedia', controller);
         }),
       ),

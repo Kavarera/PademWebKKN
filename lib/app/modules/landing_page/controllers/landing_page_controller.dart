@@ -20,6 +20,5 @@ class LandingPageController extends GetxController {
 
   void changeState(int i) {
     this.STATE.value = i;
-    print(i.toString());
   }
 }

@@ -26,7 +26,6 @@ AppBar getCoreAppBar(String title, LandingPageController controller) {
       TextButton(
         onPressed: () {
           controller.changeState(0);
-          print('object');
         },
         style: controller.STATE.value == 0 ? activeStyle : passiveStyle,
         child: Container(
