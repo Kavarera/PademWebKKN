@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -68,8 +70,12 @@ class LandingPageView extends GetView<LandingPageController> {
         .toList();
     CarouselSliderController _controller = CarouselSliderController();
     return Scaffold(
-      appBar: Obx(
-        () => GetCoreAppBar('Padem Pedia', controller.STATE.value),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Obx(() {
+          log('State change');
+          return getCoreAppBar('Padem Pedia', controller);
+        }),
       ),
       body: Center(
         child: SingleChildScrollView(

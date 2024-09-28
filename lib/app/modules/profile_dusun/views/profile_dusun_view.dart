@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart'; // Pastikan ini mengarah ke path yang benar
+import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
+import 'package:padem_arsip_digital/app/modules/profile_dusun/bindings/profile_dusun_binding.dart';
+import 'package:padem_arsip_digital/app/modules/profile_dusun/controllers/profile_dusun_controller.dart';
 
 import '../../../core/widgets/CustomAppBar.dart'; // Pastikan ini juga mengarah ke path yang benar
 
@@ -10,7 +13,8 @@ class DusunProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GetCoreAppBar('Padem Pedia', 1),
+      appBar: getCoreAppBar('Padem Pedia',
+          LandingPageController()), // Ganti null dengan controller yang sesuai
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
