@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/beranda/views/beranda_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/profile_dusun/views/profile_dusun_view.dart';
 
-import '../../profile_dusun/views/profile_dusun_view.dart';
-
 class LandingPageController extends GetxController {
   var STATE = 0.obs;
 
