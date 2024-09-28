@@ -1,15 +1,8 @@
-import 'dart:developer';
-
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomAppBar.dart';
-import 'package:padem_arsip_digital/app/core/widgets/CustomCard.dart';
-import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
-
-import '../../../core/widgets/ImageCarousel.dart';
+import '../../../core/colors/Colors_Value.dart';
 import '../controllers/landing_page_controller.dart';
 
 class LandingPageView extends GetView<LandingPageController> {
@@ -17,164 +10,58 @@ class LandingPageView extends GetView<LandingPageController> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> images = [
-      'assets/images/background ori.jpg',
-      'assets/images/bg techno 2.jpeg',
-      'assets/images/bg techno.jpeg'
-    ];
-    final List<Map<String, String>> cardMenu = [
-      {
-        'pic': 'assets/images/background ori.jpg',
-        'menu': 'Profil Dusun',
-      },
-      {
-        'pic': 'assets/images/bg techno 2.jpeg',
-        'menu': 'Infografis',
-      },
-      {
-        'pic': 'assets/images/bg techno.jpeg',
-        'menu': 'Berita',
-      },
-      {
-        'pic': 'assets/images/background ori.jpg',
-        'menu': 'Produk dan Jasa',
-      },
-    ];
-    // int STATE = 0;
-
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    late List<Widget> imageSlides = images
-        .asMap()
-        .values
-        .map(
-          (String item) => Container(
-            height: height - 56,
-            child: Stack(
-              children: <Widget>[
-                Image.asset(
-                  item,
-                  fit: BoxFit.cover,
-                  height: height - 56,
-                  width: width,
-                ),
-                Container(
-                  height: height - 56,
-                  width: width,
-                  color: Color.fromARGB(96, 255, 255, 255),
-                ),
-              ],
-            ),
-          ),
-        )
-        .toList();
-    CarouselSliderController _controller = CarouselSliderController();
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: Obx(() {
-          return getCoreAppBar('Padem Pedia', controller);
-        }),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  imageCarousel(
-                      imageSlides, _controller, width / (height - 56)),
-                  Container(
-                    height: height - 56,
-                    width: double.infinity,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Selamat Datang",
-                            style: CustomTexts.HEADING_1(),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            "Jelajahi Dusun Padem Bersama Kami",
-                            style: CustomTexts.HEADING_2(),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            "Sumber informasi terkini tentang pemerintahan di Dusun Padem",
-                            style: CustomTexts.HEADING_4(),
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
-                    ),
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: LayoutBuilder(builder: (context, constraints) {
+            if (constraints.maxWidth < 1100) {
+              return AppBar(
+                title: Text('Padem Pedia'),
+                leading: FlutterLogo(),
+                backgroundColor: CustomColors.OLIVE_GREEN,
+                foregroundColor: Colors.white,
+                elevation: 4.0,
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: Icon(Icons.menu),
                   ),
                 ],
-              ),
-              const SizedBox(height: 32),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Menjelajahi Dusun",
-                      style: CustomTexts.HEADING_3(),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Melalui website ini Anda dapat menjelajahi segala hal yang terkait dengan Dusun Padem dari mulai aspek pemerintahan, penduduk, demografi, potensi, sampai berita.",
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 32),
-                    CustomCard(cardMenu, width),
-                    const SizedBox(height: 32),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Sambutan Kepala Dusun",
-                            style: CustomTexts.HEADING_3(),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
-                    ),
-                    // const SizedBox(width: 8),
-                    Expanded(
-                      flex: 2,
-                      child: CircleAvatar(
-                        radius: 56,
-                        backgroundImage:
-                            AssetImage('assets/images/background ori.jpg'),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(height: 32),
-              CustomFooter
-            ],
+              );
+            } else {
+              return Obx(() => getCoreAppBar('Padem Pedia', controller));
+            }
+          })
+          // Obx(() {
+          //   return getCoreAppBar('Padem Pedia', controller);
+          // }),
           ),
+      drawer: Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(10),
+          children: [
+            _buildDrawerItem(0, 'Beranda'),
+            _buildDrawerItem(1, 'Profile Dusun'),
+            _buildDrawerItem(2, 'Infografis'),
+            _buildDrawerItem(3, 'Berita'),
+            _buildDrawerItem(4, 'Produk dan Jasa'),
+            _buildDrawerItem(5, 'Login'),
+          ],
         ),
       ),
+      body: Obx(() => controller.getPage(controller.STATE.value)),
+    );
+  }
+
+  Widget _buildDrawerItem(int index, String title) {
+    return ListTile(
+      title: Text(title),
+      onTap: () {
+        controller.changeState(index);
+        Get.back(); // Close the drawer
+      },
     );
   }
 }

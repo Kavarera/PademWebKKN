@@ -43,7 +43,7 @@ AppBar getCoreAppBar(String title, LandingPageController controller) {
         style: controller.STATE.value == 1 ? activeStyle : passiveStyle,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          child: Text("Profil Dusun"),
+          child: Text("Profile Dusun"),
         ),
       ),
       SizedBox(
