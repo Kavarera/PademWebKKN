@@ -38,7 +38,7 @@ class LandingPageView extends GetView<LandingPageController> {
         'menu': 'Produk dan Jasa',
       },
     ];
-    int STATE = 0;
+    // int STATE = 0;
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -68,7 +68,9 @@ class LandingPageView extends GetView<LandingPageController> {
         .toList();
     CarouselSliderController _controller = CarouselSliderController();
     return Scaffold(
-      appBar: GetCoreAppBar('Padem Pedia', STATE),
+      appBar: Obx(
+        () => GetCoreAppBar('Padem Pedia', controller.STATE.value),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

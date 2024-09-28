@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 
-AppBar GetCoreAppBar(String title, int currState) {
+class CustomCoreAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final int state;
+
+  CustomCoreAppBar(this.title, this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return _GetCoreAppBar(title, state);
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+
+AppBar _GetCoreAppBar(String title, int currState) {
   final activeStyle = ButtonStyle(
     backgroundColor: WidgetStateProperty.all<Color>(CustomColors.BRONZE),
     foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
