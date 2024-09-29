@@ -56,7 +56,7 @@ class BerandaView extends GetView<BerandaController> {
                 Container(
                   height: height - 56,
                   width: width,
-                  color: Color.fromARGB(96, 255, 255, 255),
+                  color: Color.fromARGB(120, 0, 0, 0),
                 ),
               ],
             ),
@@ -84,17 +84,22 @@ class BerandaView extends GetView<BerandaController> {
                         children: [
                           Text(
                             "Selamat Datang",
-                            style: CustomTexts.HEADING_1(),
+                            style: CustomTexts.HEADING_1(
+                                color: Colors.white, shadow: true),
                             textAlign: TextAlign.center,
                           ),
+                          const SizedBox(height: 8),
                           Text(
                             "Jelajahi Dusun Padem Bersama Kami",
-                            style: CustomTexts.HEADING_2(),
+                            style: CustomTexts.HEADING_3(
+                                color: Colors.white, shadow: true),
                             textAlign: TextAlign.center,
                           ),
+                          const SizedBox(height: 8),
                           Text(
                             "Sumber informasi terkini tentang pemerintahan di Dusun Padem",
-                            style: CustomTexts.HEADING_4(),
+                            style: CustomTexts.HEADING_4(
+                                color: Colors.white, shadow: true),
                             textAlign: TextAlign.center,
                           )
                         ],
@@ -126,46 +131,70 @@ class BerandaView extends GetView<BerandaController> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Sambutan Kepala Dusun",
-                            style: CustomTexts.HEADING_3(),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
-                    ),
-                    // const SizedBox(width: 8),
-                    Expanded(
-                      flex: 2,
-                      child: CircleAvatar(
-                        radius: 56,
-                        backgroundImage:
-                            AssetImage('assets/images/background ori.jpg'),
-                      ),
-                    )
-                  ],
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: sambutanKepalaDesa(width),
               ),
               const SizedBox(height: 32),
-              CustomFooter
+              CustomFooter(width)
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget sambutanKepalaDesa(double width) {
+    if (width < 600) {
+      return Column(
+        children: [
+          Text(
+            "Sambutan Kepala Dusun",
+            style: CustomTexts.HEADING_3(),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          CircleAvatar(
+            radius: 64,
+            backgroundImage: AssetImage('assets/images/background ori.jpg'),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            textAlign: TextAlign.center,
+          ),
+        ],
+      );
+    } else {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Sambutan Kepala Dusun",
+                  style: CustomTexts.HEADING_3(),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: CircleAvatar(
+              radius: 56,
+              backgroundImage: AssetImage('assets/images/background ori.jpg'),
+            ),
+          )
+        ],
+      );
+    }
   }
 }
