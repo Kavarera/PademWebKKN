@@ -24,7 +24,7 @@ class LandingPageView extends GetView<LandingPageController> {
                 actions: [
                   IconButton(
                     onPressed: () {
-                      Scaffold.of(context).openDrawer();
+                      Scaffold.of(context).openEndDrawer();
                     },
                     icon: Icon(Icons.menu),
                   ),
@@ -38,7 +38,8 @@ class LandingPageView extends GetView<LandingPageController> {
           //   return getCoreAppBar('Padem Pedia', controller);
           // }),
           ),
-      drawer: Drawer(
+      endDrawer: Drawer(
+        backgroundColor: CustomColors.OLIVE_GREEN,
         child: ListView(
           padding: const EdgeInsets.all(10),
           children: [
@@ -57,7 +58,12 @@ class LandingPageView extends GetView<LandingPageController> {
 
   Widget _buildDrawerItem(int index, String title) {
     return ListTile(
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
       onTap: () {
         controller.changeState(index);
         Get.back(); // Close the drawer
