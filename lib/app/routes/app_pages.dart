@@ -1,5 +1,10 @@
 import 'package:get/get.dart';
 
+import '../modules/belanja_page/bindings/belanja_page_binding.dart';
+import '../modules/belanja_page/views/belanja_page_view.dart';
+// Alias untuk menghindari benturan nama
+import '../modules/detailbelanja_page/bindings/detailbelanja_page_binding.dart' as detail_belanja_binding;
+import '../modules/detailbelanja_page/views/detailbelanja_page_view.dart' as detail_belanja_view;
 import '../modules/guest_page/beranda/bindings/beranda_binding.dart';
 import '../modules/guest_page/beranda/views/beranda_view.dart';
 import '../modules/guest_page/profile_dusun/bindings/profile_dusun_binding.dart';
@@ -29,6 +34,17 @@ class AppPages {
       name: _Paths.PROFILE_DUSUN,
       page: () => const ProfileDusunView(),
       binding: ProfileDusunBinding(),
+    ),
+    GetPage(
+      name: _Paths.BELANJA_PAGE,
+      page: () => BelanjaPageView(),
+      binding: BelanjaPageBinding(),
+    ),
+    // Menggunakan alias untuk menghindari benturan nama
+    GetPage(
+      name: _Paths.DETAILBELANJA_PAGE,
+      page: () => DetailbelanjaPageView(),
+      binding: detail_belanja_binding.DetailbelanjaPageBinding(),
     ),
   ];
 }

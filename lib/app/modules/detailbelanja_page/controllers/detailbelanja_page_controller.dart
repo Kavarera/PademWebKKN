@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class LoginPageController extends GetxController {
-  //TODO: Implement LoginPageController
+class DetailbelanjaPageController extends GetxController {
+  //TODO: Implement DetailbelanjaPageController
 
   final count = 0.obs;
   @override
@@ -20,6 +20,4 @@ class LoginPageController extends GetxController {
   }
 
   void increment() => count.value++;
-
-  void changeState(int index) {}
 }
