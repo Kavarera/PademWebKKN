@@ -13,6 +13,8 @@ TextField textFieldWithLabel({
     obscureText: isObscure ?? false,
     controller: controller,
     readOnly: readOnly,
+    minLines: 1,
+    maxLines: 100,
     decoration: InputDecoration(
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,

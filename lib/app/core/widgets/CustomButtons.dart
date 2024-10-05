@@ -21,3 +21,23 @@ Widget primaryButton(String text, Function function) {
     ),
   );
 }
+
+Widget dangerButton(String text, Function function) {
+  return SizedBox(
+    width: double.infinity,
+    child: ElevatedButton(
+      onPressed: () {
+        function();
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: CustomColors.FIRE_BRICK,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        padding: const EdgeInsets.all(15),
+      ),
+      child: Text(text),
+    ),
+  );
+}
