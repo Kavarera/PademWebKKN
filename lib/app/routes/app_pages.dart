@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/belanja_page/bindings/belanja_page_binding.dart';
+import '../modules/belanja_page/views/belanja_page_view.dart';
+import '../modules/detailbelanja_page/bindings/detailbelanja_page_binding.dart' as detail_belanja_binding;
+import '../modules/detailbelanja_page/views/detailbelanja_page_view.dart' as detail_belanja_view;
 import '../modules/detail_berita/bindings/detail_berita_binding.dart';
 import '../modules/detail_berita/views/detail_berita_view.dart';
 import '../modules/guest_page/beranda/bindings/beranda_binding.dart';
@@ -35,6 +39,16 @@ class AppPages {
       binding: ProfileDusunBinding(),
     ),
     GetPage(
+
+      name: _Paths.BELANJA_PAGE,
+      page: () => BelanjaPageView(),
+      binding: BelanjaPageBinding(),
+    ),
+    // Menggunakan alias untuk menghindari benturan nama
+    GetPage(
+      name: _Paths.DETAILBELANJA_PAGE,
+      page: () => DetailbelanjaPageView(),
+      binding: detail_belanja_binding.DetailbelanjaPageBinding(),
       name: _Paths.LIST_BERITA,
       page: () => const ListBeritaView(),
       binding: ListBeritaBinding(),
