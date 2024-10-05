@@ -7,6 +7,8 @@ abstract class Routes {
   static const LANDING_PAGE = _Paths.LANDING_PAGE;
   static const BERANDA = _Paths.BERANDA;
   static const PROFILE_DUSUN = _Paths.PROFILE_DUSUN;
+  static const LIST_BERITA = _Paths.LIST_BERITA;
+  static const DETAIL_BERITA = _Paths.DETAIL_BERITA;
 }
 
 abstract class _Paths {
@@ -15,4 +17,6 @@ abstract class _Paths {
   static const LANDING_PAGE = '/landing-page';
   static const BERANDA = '/beranda';
   static const PROFILE_DUSUN = '/profile-dusun';
+  static const LIST_BERITA = '/list-berita';
+  static const DETAIL_BERITA = '/detail-berita';
 }
