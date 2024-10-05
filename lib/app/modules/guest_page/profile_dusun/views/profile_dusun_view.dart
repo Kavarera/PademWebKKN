@@ -111,7 +111,18 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                           ],
                         ),
                         const SizedBox(height: 16),
-
+                        Column(
+                          children: const [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: NetworkImage(
+                                  'https://img.icons8.com/color/48/user-male-circle--v1.png'), // Gambar Kepala Dusun dari URL
+                            ),
+                            SizedBox(height: 8),
+                            Text('Pak RW XYZ'),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
                         // Deretan RT di bawah Dukuh
                         Wrap(
                           spacing: 20.0, // Jarak horizontal antar item

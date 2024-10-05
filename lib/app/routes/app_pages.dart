@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/admin_pages/home_admin/bindings/home_admin_binding.dart';
+import '../modules/admin_pages/home_admin/views/home_admin_view.dart';
+import '../modules/admin_pages/profile_dusun_admin/bindings/profile_dusun_admin_binding.dart';
+import '../modules/admin_pages/profile_dusun_admin/views/profile_dusun_admin_view.dart';
 import '../modules/detail_berita/bindings/detail_berita_binding.dart';
 import '../modules/detail_berita/views/detail_berita_view.dart';
 import '../modules/guest_page/beranda/bindings/beranda_binding.dart';
@@ -41,8 +45,20 @@ class AppPages {
     ),
     GetPage(
       name: '${_Paths.DETAIL_BERITA}/:id',
-      page: () => const DetailBeritaView(),
+      page: () => const DetailBeritaView(
+        BERITAID: 0,
+      ),
       binding: DetailBeritaBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_ADMIN,
+      page: () => const HomeAdminView(),
+      binding: HomeAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_DUSUN_ADMIN,
+      page: () => const ProfileDusunAdminView(),
+      binding: ProfileDusunAdminBinding(),
     ),
   ];
 }
