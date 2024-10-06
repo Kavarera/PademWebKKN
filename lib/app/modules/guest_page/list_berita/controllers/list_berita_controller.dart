@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
+import 'package:padem_arsip_digital/app/modules/detail_berita/views/detail_berita_view.dart';
 
 class ListBeritaController extends GetxController {
-  //TODO: Implement ListBeritaController
-
-  final count = 0.obs;
+  var currentBeritaId = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +18,9 @@ class ListBeritaController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  getBeritaPage() {
+    return DetailBeritaView(
+      BERITAID: currentBeritaId.value,
+    );
+  }
 }

@@ -11,6 +11,10 @@ abstract class Routes {
   static const DETAILBELANJA_PAGE = _Paths.DETAILBELANJA_PAGE;
   static const LIST_BERITA = _Paths.LIST_BERITA;
   static const DETAIL_BERITA = _Paths.DETAIL_BERITA;
+  static const HOME_ADMIN = _Paths.HOME_ADMIN;
+  static const PROFILE_DUSUN_ADMIN = _Paths.PROFILE_DUSUN_ADMIN;
+  static const BERITA_ADMIN = _Paths.BERITA_ADMIN;
+  static const BUAT_BERITA = _Paths.BUAT_BERITA;
 }
 
 abstract class _Paths {
@@ -23,4 +27,8 @@ abstract class _Paths {
   static const DETAILBELANJA_PAGE = '/detailbelanja-page';
   static const LIST_BERITA = '/list-berita';
   static const DETAIL_BERITA = '/detail-berita';
+  static const HOME_ADMIN = '/home-admin';
+  static const PROFILE_DUSUN_ADMIN = '/profile-dusun-admin';
+  static const BERITA_ADMIN = '/berita-admin';
+  static const BUAT_BERITA = '/buat-berita';
 }

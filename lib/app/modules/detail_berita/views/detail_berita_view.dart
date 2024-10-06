@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
+import 'package:padem_arsip_digital/app/core/widgets/CustomAppBar.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 import 'package:padem_arsip_digital/app/core/widgets/ImageCarousel.dart';
 import 'package:padem_arsip_digital/app/models/NewsModel.dart';
+import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
 
 import '../controllers/detail_berita_controller.dart';
 
 class DetailBeritaView extends GetView<DetailBeritaController> {
-  const DetailBeritaView({super.key});
+  final int BERITAID;
+  const DetailBeritaView({required this.BERITAID, super.key});
   @override
   Widget build(BuildContext context) {
     int id = int.parse(Get.parameters['id']!);
@@ -26,6 +29,7 @@ class DetailBeritaView extends GetView<DetailBeritaController> {
     }).toList();
     CarouselSliderController carouselController = CarouselSliderController();
     return Scaffold(
+      appBar: getCoreAppBar('Padem Pedia', Get.find<LandingPageController>()),
       body: SingleChildScrollView(
         child: Column(
           children: [

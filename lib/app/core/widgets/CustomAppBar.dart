@@ -101,3 +101,13 @@ AppBar getCoreAppBar(String title, LandingPageController controller) {
     ],
   );
 }
+
+AppBar adminAppBar() {
+  return AppBar(
+    title: Text('Padem Pedia'),
+    leading: FlutterLogo(),
+    backgroundColor: CustomColors.OLIVE_GREEN,
+    foregroundColor: Colors.white,
+    elevation: 4.0,
+  );
+}

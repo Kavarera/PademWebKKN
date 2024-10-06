@@ -1,64 +1,71 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
-import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
-import 'package:padem_arsip_digital/app/core/widgets/CustomTextField.dart';
+import 'package:padem_arsip_digital/app/core/widgets/CustomButtons.dart';
+import 'package:padem_arsip_digital/app/core/widgets/CustomDrawerAdmin.dart';
 
+import '../../../../core/colors/Colors_Value.dart';
+import '../../../../core/styles/Text_Styles.dart';
+import '../../../../core/widgets/CustomAppBar.dart';
+import '../../../../core/widgets/CustomTextField.dart';
 import '../../../../models/NewsModel.dart';
-import '../controllers/list_berita_controller.dart';
+import '../controllers/berita_admin_controller.dart';
 
-class ListBeritaView extends GetView<ListBeritaController> {
-  const ListBeritaView({super.key});
-
+class BeritaAdminView extends GetView<BeritaAdminController> {
+  const BeritaAdminView({super.key});
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     TextEditingController searchController = TextEditingController();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: width,
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Berita',
-                    style: CustomTexts.HEADING_2(),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Baca berita menarik dan terkini terkait Dusun Padem.',
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                  ),
-                  const SizedBox(height: 16),
-                  textFieldWithLabel(
-                    controller: searchController,
-                    placeholder: 'Cari berita...',
-                    suffixIcon: Icon(Symbols.search),
-                  ),
-                  const SizedBox(height: 16),
-                  Wrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: newsList.asMap().values.map((item) {
-                        return Column(children: [
-                          const SizedBox(height: 16),
-                          newsItem(item, width),
-                        ]);
-                      }).toList())
-                ],
+      appBar: adminAppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed('/buat-berita');
+        },
+        backgroundColor: CustomColors.OLIVE_GREEN,
+        foregroundColor: Colors.white,
+        child: Icon(Symbols.add),
+      ),
+      body: Row(
+        children: [
+          drawerAdmin(3),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                width: width,
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Berita',
+                      style: CustomTexts.HEADING_2(),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    textFieldWithLabel(
+                      controller: searchController,
+                      placeholder: 'Cari berita...',
+                      suffixIcon: Icon(Symbols.search),
+                    ),
+                    const SizedBox(height: 16),
+                    Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: newsList.asMap().values.map((item) {
+                          return Column(children: [
+                            const SizedBox(height: 16),
+                            newsItem(item, width),
+                          ]);
+                        }).toList())
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 16),
-            CustomFooter(width),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -69,7 +76,7 @@ class ListBeritaView extends GetView<ListBeritaController> {
         Get.toNamed('/detail-berita/${item.id}');
       },
       child: Container(
-        width: width < 600 ? width : (width - 48) / 2,
+        width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(5),
@@ -134,7 +141,20 @@ class ListBeritaView extends GetView<ListBeritaController> {
                 style: TextStyle(fontSize: 14),
               ),
             ),
-            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: dangerButton('Hapus', () {}),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: primaryButton('Edit', () {}),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

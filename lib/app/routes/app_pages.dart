@@ -1,19 +1,26 @@
 import 'package:get/get.dart';
 
+import '../modules/admin_pages/berita_admin/bindings/berita_admin_binding.dart';
+import '../modules/admin_pages/berita_admin/views/berita_admin_view.dart';
+import '../modules/admin_pages/buat_berita/bindings/buat_berita_binding.dart';
+import '../modules/admin_pages/buat_berita/views/buat_berita_view.dart';
+import '../modules/admin_pages/home_admin/bindings/home_admin_binding.dart';
+import '../modules/admin_pages/home_admin/views/home_admin_view.dart';
+import '../modules/admin_pages/profile_dusun_admin/bindings/profile_dusun_admin_binding.dart';
+import '../modules/admin_pages/profile_dusun_admin/views/profile_dusun_admin_view.dart';
 import '../modules/belanja_page/bindings/belanja_page_binding.dart';
 import '../modules/belanja_page/views/belanja_page_view.dart';
-import '../modules/detailbelanja_page/bindings/detailbelanja_page_binding.dart' as detail_belanja_binding;
-import '../modules/detailbelanja_page/views/detailbelanja_page_view.dart' as detail_belanja_view;
 import '../modules/detail_berita/bindings/detail_berita_binding.dart';
 import '../modules/detail_berita/views/detail_berita_view.dart';
 import '../modules/guest_page/beranda/bindings/beranda_binding.dart';
 import '../modules/guest_page/beranda/views/beranda_view.dart';
-import '../modules/guest_page/list_berita/bindings/list_berita_binding.dart';
-import '../modules/guest_page/list_berita/views/list_berita_view.dart';
 import '../modules/guest_page/profile_dusun/bindings/profile_dusun_binding.dart';
 import '../modules/guest_page/profile_dusun/views/profile_dusun_view.dart';
 import '../modules/landing_page/bindings/landing_page_binding.dart';
 import '../modules/landing_page/views/landing_page_view.dart';
+
+import '../modules/detailbelanja_page/bindings/detailbelanja_page_binding.dart'
+    as detail_belanja_binding;
 
 part 'app_routes.dart';
 
@@ -39,7 +46,6 @@ class AppPages {
       binding: ProfileDusunBinding(),
     ),
     GetPage(
-
       name: _Paths.BELANJA_PAGE,
       page: () => BelanjaPageView(),
       binding: BelanjaPageBinding(),
@@ -49,14 +55,33 @@ class AppPages {
       name: _Paths.DETAILBELANJA_PAGE,
       page: () => DetailbelanjaPageView(),
       binding: detail_belanja_binding.DetailbelanjaPageBinding(),
-      name: _Paths.LIST_BERITA,
-      page: () => const ListBeritaView(),
-      binding: ListBeritaBinding(),
     ),
     GetPage(
       name: '${_Paths.DETAIL_BERITA}/:id',
-      page: () => const DetailBeritaView(),
+      page: () => const DetailBeritaView(
+        BERITAID: 0,
+      ),
       binding: DetailBeritaBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_ADMIN,
+      page: () => const HomeAdminView(),
+      binding: HomeAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_DUSUN_ADMIN,
+      page: () => const ProfileDusunAdminView(),
+      binding: ProfileDusunAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.BERITA_ADMIN,
+      page: () => const BeritaAdminView(),
+      binding: BeritaAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUAT_BERITA,
+      page: () => const BuatBeritaView(),
+      binding: BuatBeritaBinding(),
     ),
   ];
 }

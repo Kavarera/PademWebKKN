@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:padem_arsip_digital/app/modules/belanja_page/views/belanja_page_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/beranda/views/beranda_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/list_berita/views/list_berita_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/profile_dusun/views/profile_dusun_view.dart';
