@@ -31,15 +31,14 @@ class LandingPageController extends GetxController {
     switch (value) {
       case 0:
         return BerandaView();
-      // return DusunProfilePage();
       case 1:
         return ProfileDusunView();
       case 2:
         return Text('Page 2');
       case 3:
-        return Text('Page 2');
-      case 4:
         return ListBeritaView();
+      case 4:
+        return Text('Product dan Jasa Page');
       default:
         return LoginPageView();
     }
