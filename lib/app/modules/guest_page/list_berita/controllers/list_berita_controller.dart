@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:padem_arsip_digital/app/modules/detail_berita/views/detail_berita_view.dart';
+import 'package:padem_arsip_digital/app/modules/guest_page/detail_berita/views/detail_berita_view.dart';
 
 class ListBeritaController extends GetxController {
   var currentBeritaId = 0.obs;

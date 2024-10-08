@@ -10,8 +10,8 @@ import '../modules/admin_pages/profile_dusun_admin/bindings/profile_dusun_admin_
 import '../modules/admin_pages/profile_dusun_admin/views/profile_dusun_admin_view.dart';
 import '../modules/belanja_page/bindings/belanja_page_binding.dart';
 import '../modules/belanja_page/views/belanja_page_view.dart';
-import '../modules/detail_berita/bindings/detail_berita_binding.dart';
-import '../modules/detail_berita/views/detail_berita_view.dart';
+import '../modules/guest_page/detail_berita/bindings/detail_berita_binding.dart';
+import '../modules/guest_page/detail_berita/views/detail_berita_view.dart';
 import '../modules/guest_page/beranda/bindings/beranda_binding.dart';
 import '../modules/guest_page/beranda/views/beranda_view.dart';
 import '../modules/guest_page/profile_dusun/bindings/profile_dusun_binding.dart';
@@ -58,7 +58,7 @@ class AppPages {
     ),
     GetPage(
       name: '${_Paths.DETAIL_BERITA}/:id',
-      page: () => const DetailBeritaView(
+      page: () => DetailBeritaView(
         BERITAID: 0,
       ),
       binding: DetailBeritaBinding(),

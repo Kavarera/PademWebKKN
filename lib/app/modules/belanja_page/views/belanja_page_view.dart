@@ -9,13 +9,15 @@ class BelanjaPageView extends StatefulWidget {
   _BelanjaPageViewState createState() => _BelanjaPageViewState();
 }
 
-class _BelanjaPageViewState extends State<BelanjaPageView> with SingleTickerProviderStateMixin {
+class _BelanjaPageViewState extends State<BelanjaPageView>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this); // Inisialisasi TabController
+    _tabController =
+        TabController(length: 4, vsync: this); // Inisialisasi TabController
   }
 
   @override
@@ -37,7 +39,6 @@ class _BelanjaPageViewState extends State<BelanjaPageView> with SingleTickerProv
                 textAlign: TextAlign.center,
               ),
             ),
-
 
             // TabBarView dengan konten tab
             SizedBox(
@@ -103,7 +104,8 @@ class _BelanjaPageViewState extends State<BelanjaPageView> with SingleTickerProv
                 // Navigasi ke halaman DetailbelanjaPageView saat tombol CARI ditekan
                 Get.to(() => DetailbelanjaPageView());
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green[700]),
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: Colors.green[700]),
               child: Text('CARI'),
             ),
           ),
