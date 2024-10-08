@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
-import 'package:padem_arsip_digital/app/core/widgets/CustomAppBar.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 import 'package:padem_arsip_digital/app/core/widgets/ImageCarousel.dart';
 import 'package:padem_arsip_digital/app/models/NewsModel.dart';
