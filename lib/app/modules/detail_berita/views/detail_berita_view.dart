@@ -16,9 +16,11 @@ class DetailBeritaView extends GetView<DetailBeritaController> {
   const DetailBeritaView({required this.BERITAID, super.key});
   @override
   Widget build(BuildContext context) {
-    int id = int.parse(Get.parameters['id']!);
+    // int id = int.parse(Get.parameters['id']!);
     double width = MediaQuery.of(context).size.width;
-    List<Widget> imageList = newsList[id].imageLink.asMap().values.map((item) {
+
+    List<Widget> imageList =
+        newsList[BERITAID].imageLink.asMap().values.map((item) {
       return AspectRatio(
         aspectRatio: 4 / 3,
         child: Image.network(
@@ -29,7 +31,7 @@ class DetailBeritaView extends GetView<DetailBeritaController> {
     }).toList();
     CarouselSliderController carouselController = CarouselSliderController();
     return Scaffold(
-      appBar: getCoreAppBar('Padem Pedia', Get.find<LandingPageController>()),
+      // appBar: getCoreAppBar('Padem Pedia', Get.find<LandingPageController>()),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -42,24 +44,39 @@ class DetailBeritaView extends GetView<DetailBeritaController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      newsList[id].title,
-                      style: CustomTexts.HEADING_2(),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.find<LandingPageController>().setNews(false, 0);
+                            Get.find<LandingPageController>().changeState(3);
+                          },
+                          icon: Icon(Icons.arrow_back),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              newsList[BERITAID].title,
+                              style: CustomTexts.HEADING_2(),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      newsList[id].datetime,
+                      newsList[BERITAID].datetime,
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     Text(
-                      'Oleh ${newsList[id].author}',
+                      'Oleh ${newsList[BERITAID].author}',
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     const SizedBox(height: 32),
                     imageCarousel(imageList, carouselController, 4 / 3),
                     const SizedBox(height: 32),
                     Text(
-                      newsList[id].content,
+                      newsList[BERITAID].content,
                       softWrap: true,
                     ),
                     const SizedBox(height: 32),

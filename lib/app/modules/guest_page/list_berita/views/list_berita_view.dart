@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomTextField.dart';
+import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
 
 import '../../../../models/NewsModel.dart';
 import '../controllers/list_berita_controller.dart';
@@ -66,7 +67,14 @@ class ListBeritaView extends GetView<ListBeritaController> {
   Widget newsItem(NewsModel item, double width) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/detail-berita/${item.id}');
+        try {
+          Get.find<LandingPageController>().setNews(true, item.id);
+          print(Get.find<LandingPageController>().STATE.value);
+        } catch (e) {
+          print("error : $e");
+        }
+        // Get.find<LandingPageController>().getPage(item.id);
+        // Get.toNamed('/detail-berita/${item.id}');
       },
       child: Container(
         width: width < 600 ? width : (width - 48) / 2,
