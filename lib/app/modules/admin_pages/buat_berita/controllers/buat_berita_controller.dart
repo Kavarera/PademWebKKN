@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class BuatBeritaController extends GetxController {
-  //TODO: Implement BuatBeritaController
-
   final count = 0.obs;
   @override
   void onInit() {

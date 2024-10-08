@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 class BerandaController extends GetxController {
-  //TODO: Implement BerandaController
-
   final count = 0.obs;
   @override
   void onInit() {
