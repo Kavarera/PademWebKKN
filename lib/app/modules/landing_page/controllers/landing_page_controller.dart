@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:padem_arsip_digital/app/modules/guest_page/belanja_page/views/belanja_page_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/detail_berita/views/detail_berita_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/beranda/views/beranda_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/list_berita/views/list_berita_view.dart';
@@ -57,7 +58,7 @@ class LandingPageController extends GetxController {
         case 3:
           return ListBeritaView();
         case 4:
-          return Text('Product dan Jasa Page');
+          return BelanjaPageView();
         default:
           return LoginPageView();
       }

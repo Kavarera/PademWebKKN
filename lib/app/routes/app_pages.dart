@@ -8,8 +8,8 @@ import '../modules/admin_pages/home_admin/bindings/home_admin_binding.dart';
 import '../modules/admin_pages/home_admin/views/home_admin_view.dart';
 import '../modules/admin_pages/profile_dusun_admin/bindings/profile_dusun_admin_binding.dart';
 import '../modules/admin_pages/profile_dusun_admin/views/profile_dusun_admin_view.dart';
-import '../modules/belanja_page/bindings/belanja_page_binding.dart';
-import '../modules/belanja_page/views/belanja_page_view.dart';
+import '../modules/guest_page/belanja_page/bindings/belanja_page_binding.dart';
+import '../modules/guest_page/belanja_page/views/belanja_page_view.dart';
 import '../modules/guest_page/detail_berita/bindings/detail_berita_binding.dart';
 import '../modules/guest_page/detail_berita/views/detail_berita_view.dart';
 import '../modules/guest_page/beranda/bindings/beranda_binding.dart';
@@ -51,11 +51,6 @@ class AppPages {
       binding: BelanjaPageBinding(),
     ),
     // Menggunakan alias untuk menghindari benturan nama
-    GetPage(
-      name: _Paths.DETAILBELANJA_PAGE,
-      page: () => DetailbelanjaPageView(),
-      binding: detail_belanja_binding.DetailbelanjaPageBinding(),
-    ),
     GetPage(
       name: '${_Paths.DETAIL_BERITA}/:id',
       page: () => DetailBeritaView(
