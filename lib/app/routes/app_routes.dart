@@ -15,6 +15,7 @@ abstract class Routes {
   static const PROFILE_DUSUN_ADMIN = _Paths.PROFILE_DUSUN_ADMIN;
   static const BERITA_ADMIN = _Paths.BERITA_ADMIN;
   static const BUAT_BERITA = _Paths.BUAT_BERITA;
+  static const INFOGRAFIS = _Paths.INFOGRAFIS;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const PROFILE_DUSUN_ADMIN = '/profile-dusun-admin';
   static const BERITA_ADMIN = '/berita-admin';
   static const BUAT_BERITA = '/buat-berita';
+  static const INFOGRAFIS = '/infografis';
 }
