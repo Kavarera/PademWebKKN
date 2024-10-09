@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/belanja_page/controllers/belanja_page_controller.dart';
+import '../../../../core/views/error_screen.dart';
 import '../../../../core/widgets/CustomFooter.dart';
 
 class BelanjaPageView extends GetView<BelanjaPageController> {
@@ -11,6 +12,10 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
   @override
   Widget build(BuildContext context) {
     //TODO : Implement under 400 width resolution view.
+    if (MediaQuery.of(context).size.width < 470) {
+      return ErrorScreen(
+          "Resolusi lebar layar anda dibawah 500\nMohon ubah resolusi layar dengan mengaktifkan fitur desktop.");
+    }
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

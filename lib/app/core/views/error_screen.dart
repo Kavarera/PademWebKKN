@@ -8,13 +8,19 @@ class ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(
           "assets/images/maintenance.png",
         ),
+        SizedBox(
+          height: 20,
+        ),
         Text(
           message,
           style: CustomTexts.HEADING_2(),
+          textAlign: TextAlign.center,
         )
       ],
     );
