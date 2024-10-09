@@ -12,7 +12,7 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
   @override
   Widget build(BuildContext context) {
     //TODO : Implement under 400 width resolution view.
-    if (MediaQuery.of(context).size.width < 470) {
+    if (MediaQuery.of(context).size.width < 400) {
       return ErrorScreen(
           "Resolusi lebar layar anda dibawah 500\nMohon ubah resolusi layar dengan mengaktifkan fitur desktop.");
     }
@@ -23,12 +23,12 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
           Center(
             child: Text(
               "Beli Dari Dusun",
-              style: CustomTexts.HEADING_3(),
+              style: CustomTexts.HEADING_2(),
             ),
           ),
           //Tab Button Section
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
             decoration: BoxDecoration(
               color: CustomColors.LIGHT_OCEAN_BLUE,
               borderRadius: BorderRadius.circular(25),
@@ -85,8 +85,12 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                mainAxisSpacing: 10,
+                crossAxisCount: MediaQuery.of(context).size.width < 1000
+                    ? 1
+                    : MediaQuery.of(context).size.width < 1200
+                        ? 2
+                        : 4,
+                mainAxisSpacing: 100,
               ),
               itemBuilder: (context, index) => Container(
                 color: Colors.red,
@@ -105,6 +109,7 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
 
   Widget ProductCard() {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -116,7 +121,6 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +159,9 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
             maxLines: 3, // Limit the number of lines
             style: TextStyle(height: 1.2), // Adjust line height for compactness
           ),
-          SizedBox(height: 5),
+          SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
