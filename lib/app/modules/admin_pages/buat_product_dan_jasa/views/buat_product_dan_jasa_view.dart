@@ -31,9 +31,9 @@ class BuatProductDanJasaView extends GetView<BuatProductDanJasaController> {
         Get.arguments as ProductJasaFirestoreModel?;
 
     if (_product != null) {
-      _judulController.text = _product.name;
-      _kontenController.text = _product.description;
-      _hargaController.text = _product.price.toString();
+      _judulController.text = _product.title;
+      _kontenController.text = _product.content;
+      _hargaController.text = _product.harga.toString();
       _contactController.text = _product.contact;
     }
 

@@ -81,7 +81,7 @@ class BuatProductDanJasaController extends GetxController {
       final productData = {
         'title': title,
         'content': content,
-        'harga': harga,
+        'harga': double.parse(harga),
         'contact': contact,
         'imageUrl': linkUrl.toString(),
         'category': selectedCategory.value.value,

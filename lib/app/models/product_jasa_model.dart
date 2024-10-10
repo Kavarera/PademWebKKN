@@ -2,42 +2,46 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../core/enums/product_dan_jasa_enum.dart';
 
 class ProductJasaFirestoreModel {
+  final String id;
   final String contact;
-  final String description;
+  final String content;
   final String imageUrl;
-  final String name;
-  final double price;
-  final ProductJasaEnum type;
+  final String title;
+  final double harga;
+  final ProductJasaEnum category;
 
   ProductJasaFirestoreModel({
+    required this.id,
     required this.contact,
-    required this.description,
+    required this.content,
     required this.imageUrl,
-    required this.name,
-    required this.price,
-    required this.type,
+    required this.title,
+    required this.harga,
+    required this.category,
   });
 
   factory ProductJasaFirestoreModel.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return ProductJasaFirestoreModel(
+      id: doc.id,
       contact: data['contact'] ?? '',
-      description: data['description'] ?? '',
+      content: data['content'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
-      name: data['name'] ?? '',
-      price: (data['price'] ?? 0).toDouble(),
-      type: ProductJasaEnum.values[data['type'] ?? 0],
+      title: data['title'] ?? '',
+      harga: (data['harga'] ?? 0).toDouble(),
+      category: ProductJasaEnum.values[data['category'] ?? 0],
     );
   }
 
   Map<String, dynamic> toFirestore() {
     return {
+      'id': id,
       'contact': contact,
-      'description': description,
+      'content': content,
       'imageUrl': imageUrl,
-      'name': name,
-      'price': price,
-      'type': type.value,
+      'title': title,
+      'harga': harga,
+      'category': category.value,
     };
   }
 }
