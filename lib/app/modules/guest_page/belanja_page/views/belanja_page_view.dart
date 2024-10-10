@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
+import 'package:padem_arsip_digital/app/models/product_jasa_model.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/belanja_page/controllers/belanja_page_controller.dart';
+import '../../../../core/enums/product_dan_jasa_enum.dart';
 import '../../../../core/views/error_screen.dart';
 import '../../../../core/widgets/CustomFooter.dart';
 
@@ -11,11 +14,11 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO : Implement under 400 width resolution view.
     if (MediaQuery.of(context).size.width < 400) {
       return ErrorScreen(
           "Resolusi lebar layar anda dibawah 500\nMohon ubah resolusi layar dengan mengaktifkan fitur desktop.");
     }
+    controller.fetchAllProduct();
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -37,7 +40,9 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.filterProduct(ProductJasaEnum.HOMESTAY);
+                  },
                   child: Text(
                     "Homestay",
                     style: TextStyle(
@@ -47,7 +52,9 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.filterProduct(ProductJasaEnum.CULINARY);
+                  },
                   child: Text(
                     "Culinary",
                     style: TextStyle(
@@ -57,7 +64,9 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.filterProduct(ProductJasaEnum.TOURGUIDE);
+                  },
                   child: Text(
                     "Tourist Guide",
                     style: TextStyle(
@@ -67,7 +76,9 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.filterProduct(ProductJasaEnum.RETAILSTORE);
+                  },
                   child: Text(
                     "Retail Store",
                     style: TextStyle(
@@ -83,22 +94,30 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
             height: 30,
           ),
           Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: MediaQuery.of(context).size.width < 1000
-                    ? 1
-                    : MediaQuery.of(context).size.width < 1200
-                        ? 2
-                        : 3,
-                mainAxisSpacing: 100,
-              ),
-              itemBuilder: (context, index) => Container(
-                color: Colors.red,
-                child: ProductCard(),
-              ),
-              itemCount: 10,
-              shrinkWrap: true,
-            ),
+            child: Obx(() {
+              if (controller.visibleProductList.isEmpty) {
+                return Center(
+                  child:
+                      Text('Tidak Ada Produk', style: CustomTexts.HEADING_2()),
+                );
+              }
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: MediaQuery.of(context).size.width < 1000
+                      ? 1
+                      : MediaQuery.of(context).size.width < 1200
+                          ? 2
+                          : 3,
+                  mainAxisSpacing: 100,
+                ),
+                itemBuilder: (context, index) => Container(
+                  color: Colors.red,
+                  child: ProductCard(controller.visibleProductList[index]),
+                ),
+                itemCount: controller.visibleProductList.length,
+                shrinkWrap: true,
+              );
+            }),
           ),
           // Footer Section
           // CustomFooter(MediaQuery.of(context).size.width),
@@ -107,7 +126,7 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
     );
   }
 
-  Widget ProductCard() {
+  Widget ProductCard(ProductJasaFirestoreModel product) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -140,19 +159,19 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
               ],
             ),
             padding: const EdgeInsets.all(5), // Reduced padding
-            child: Image.asset(
-              'assets/images/product_image.png',
+            child: Image.network(
+              product.imageUrl.toString(),
               fit: BoxFit.contain,
             ),
           ),
           //Title card
           Text(
-            "Product Name",
+            product.title,
             style: CustomTexts.HEADING_3(),
           ),
           //Description
           Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec odio vitae nunc. Donec nec odio vitae nunc. Donec nec odio vitae nunc.',
+            product.content,
             softWrap: true,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.end,
@@ -173,7 +192,9 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
                 ),
                 padding: const EdgeInsets.all(5), // Reduced padding
                 child: Text(
-                  'Rp 999.000,00',
+                  NumberFormat.currency(
+                          locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                      .format(product.harga),
                   style: CustomTexts.HEADING_4(),
                 ),
               ),
@@ -184,7 +205,7 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
                 ),
                 padding: const EdgeInsets.all(5), // Reduced padding
                 child: Text(
-                  '+62 8788888888',
+                  product.contact,
                   style: CustomTexts.HEADING_4().apply(color: Colors.white),
                 ),
               ),
