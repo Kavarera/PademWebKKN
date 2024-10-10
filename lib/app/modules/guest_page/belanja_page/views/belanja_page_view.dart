@@ -89,7 +89,7 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
                     ? 1
                     : MediaQuery.of(context).size.width < 1200
                         ? 2
-                        : 4,
+                        : 3,
                 mainAxisSpacing: 100,
               ),
               itemBuilder: (context, index) => Container(

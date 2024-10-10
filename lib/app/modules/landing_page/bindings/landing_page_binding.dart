@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:padem_arsip_digital/app/modules/guest_page/infografis/controllers/infografis_controller.dart';
 
 import '../controllers/landing_page_controller.dart';
 
@@ -7,6 +8,9 @@ class LandingPageBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<LandingPageController>(
       () => LandingPageController(),
+    );
+    Get.lazyPut<InfografisController>(
+      () => InfografisController(),
     );
   }
 }

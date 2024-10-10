@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 
 import '../../../../core/styles/Text_Styles.dart';
+import '../../../../data/profile_dusun_data.dart';
 import '../controllers/profile_dusun_controller.dart';
 
 class ProfileDusunView extends GetView<ProfileDusunController> {
@@ -45,22 +46,45 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'VISI',
-                              style: CustomTexts.HEADING_3(),
+                            Center(
+                              child: Text(
+                                'VISI',
+                                style: CustomTexts.HEADING_3(),
+                              ),
                             ),
-                            Text(
-                              'BLABARJKNJSKNKSQWJNSKQWJQWN',
-                              softWrap: true,
+                            Center(
+                              child: Text(
+                                PADEM_VISI,
+                                softWrap: true,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             SizedBox(height: 8),
-                            Text(
-                              'MISI',
-                              style: CustomTexts.HEADING_3(),
+                            Center(
+                              child: Text(
+                                'MISI',
+                                style: CustomTexts.HEADING_3(),
+                              ),
                             ),
-                            Text(
-                              'BLABARJKNJSKNKSQWJNSKQWJQWN',
-                              softWrap: true,
+                            Center(
+                              child: SizedBox(
+                                height: 300,
+                                child: ListView.builder(
+                                  itemCount: PADEM_MISI.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      child: Center(
+                                        child: Text(
+                                          '${index + 1}. ${PADEM_MISI[index]}',
+                                          softWrap: true,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
                           ],
                         ),
