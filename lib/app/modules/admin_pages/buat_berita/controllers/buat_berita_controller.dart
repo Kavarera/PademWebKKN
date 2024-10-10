@@ -11,6 +11,7 @@ import 'package:padem_arsip_digital/app/routes/app_pages.dart';
 class BuatBeritaController extends GetxController {
   PlatformFile? file;
   var fileNames = ''.obs;
+  var isUploading = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -43,6 +44,7 @@ class BuatBeritaController extends GetxController {
           backgroundColor: Colors.red);
       return;
     }
+    isUploading.value = true;
     print('saving news');
     String? linkUrl = await _uploadFile();
     print('eee:${linkUrl?.toString()}');
@@ -52,7 +54,7 @@ class BuatBeritaController extends GetxController {
       final newsData = {
         'title': title,
         'description': description,
-        'imageUrl': linkUrl,
+        'imageUrl': linkUrl.toString(),
         'createdAt': DateFormat('EEEE, d MMM yyyy', Intl.defaultLocale)
             .format(DateTime.now()),
       };
@@ -60,7 +62,8 @@ class BuatBeritaController extends GetxController {
       await FirebaseFirestore.instance.collection('news').add(newsData);
       Get.snackbar('Informasi', 'Berita berhasil disimpan',
           backgroundColor: CustomColors.FOREST_GREEN);
-      Get.offAndToNamed(Routes.BUAT_BERITA);
+      isUploading.value = false;
+      Get.offAndToNamed(Routes.BERITA_ADMIN);
     } else {
       Get.snackbar('Error', 'Gagal mengunggah gambar',
           backgroundColor: Colors.red);

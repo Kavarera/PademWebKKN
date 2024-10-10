@@ -76,12 +76,18 @@ class BuatBeritaView extends GetView<BuatBeritaController> {
                           })),
                     ),
                     const SizedBox(height: 16),
-                    primaryButton('Simpan', () {
-                      controller.saveNews(
-                        _judulController.text,
-                        _kontenController.text,
-                      );
-                    })
+                    Obx(() => controller.isUploading.value
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: CustomColors.FOREST_GREEN,
+                            ),
+                          )
+                        : primaryButton('Simpan', () {
+                            controller.saveNews(
+                              _judulController.text,
+                              _kontenController.text,
+                            );
+                          }))
                   ],
                 ),
               ),

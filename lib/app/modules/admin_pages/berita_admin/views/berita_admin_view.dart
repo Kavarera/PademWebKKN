@@ -99,6 +99,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
   }
 
   Widget newsItem(NewsModelFirestore item, double width) {
+    print("newsItem = ${item.imageUrl.toString()}");
     return InkWell(
       onTap: () {
         Get.offAndToNamed('/detail-berita/${item.id}');
@@ -129,7 +130,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
               child: AspectRatio(
                 aspectRatio: 4 / 3,
                 child: Image.network(
-                  Uri.encodeFull(item.imageUrl),
+                  item.imageUrl.toString(),
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),

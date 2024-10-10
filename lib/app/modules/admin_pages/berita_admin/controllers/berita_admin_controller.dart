@@ -33,8 +33,7 @@ class BeritaAdminController extends GetxController {
           .map((doc) => NewsModelFirestore.fromDocument(doc))
           .toList();
       newsList.forEach((element) {
-        print(element.title);
-        print(element.imageUrl);
+        print("After fetch = ${element.imageUrl}");
       });
       isFetching.value = false;
     } catch (e) {
