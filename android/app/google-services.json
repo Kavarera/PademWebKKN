@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "224655251939",
+    "firebase_url": "https://padem-535a1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "padem-535a1",
+    "storage_bucket": "padem-535a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224655251939:android:4376ae76bb91b2908228d6",
+        "android_client_info": {
+          "package_name": "com.kavarera.padempedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO1ab9IaggigEeJFZq6Ah58JBX0QuwJS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

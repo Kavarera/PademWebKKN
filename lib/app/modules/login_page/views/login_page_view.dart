@@ -9,6 +9,8 @@ class LoginPageView extends GetView<LoginPageController> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _username = TextEditingController();
+    TextEditingController _password = TextEditingController();
     return Scaffold(
       endDrawer: Drawer(
         backgroundColor: CustomColors.OLIVE_GREEN,
@@ -26,7 +28,8 @@ class LoginPageView extends GetView<LoginPageController> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return SingleChildScrollView( // Mengatasi overflow dengan scroll
+          return SingleChildScrollView(
+            // Mengatasi overflow dengan scroll
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: constraints.maxHeight, // Sesuaikan tinggi minimum
@@ -42,7 +45,8 @@ class LoginPageView extends GetView<LoginPageController> {
                           Container(
                             decoration: const BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/background.jpg'), // Path to your image
+                                image: AssetImage(
+                                    'assets/background.png'), // Path to your image
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -54,7 +58,8 @@ class LoginPageView extends GetView<LoginPageController> {
                           Center(
                             child: Container(
                               padding: const EdgeInsets.all(20),
-                              margin: const EdgeInsets.symmetric(horizontal: 20),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               decoration: BoxDecoration(
                                 color: Colors.white.withOpacity(0.9),
                                 borderRadius: BorderRadius.circular(10),
@@ -69,14 +74,16 @@ class LoginPageView extends GetView<LoginPageController> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const TextField(
+                                  TextField(
+                                    controller: _username,
                                     decoration: InputDecoration(
                                       labelText: 'Your username or email',
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
                                   const SizedBox(height: 15),
-                                  const TextField(
+                                  TextField(
+                                    controller: _password,
                                     obscureText: true,
                                     decoration: InputDecoration(
                                       labelText: 'Your password',
@@ -85,7 +92,8 @@ class LoginPageView extends GetView<LoginPageController> {
                                   ),
                                   const SizedBox(height: 10),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -100,7 +108,8 @@ class LoginPageView extends GetView<LoginPageController> {
                                         onPressed: () {
                                           // Forgot password logic
                                         },
-                                        child: const Text('Forgot your password?'),
+                                        child:
+                                            const Text('Forgot your password?'),
                                       ),
                                     ],
                                   ),
@@ -108,30 +117,33 @@ class LoginPageView extends GetView<LoginPageController> {
                                   SizedBox(
                                     width: double.infinity,
                                     child: ElevatedButton(
-                                      onPressed: () {
-                                        // Login button logic
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xFF725201), // Custom button color
-                                        padding: const EdgeInsets.symmetric(vertical: 15),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(5),
+                                        onPressed: () {
+                                          controller.login(_username.value.text,
+                                              _password.value.text);
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(
+                                              0xFF725201), // Custom button color
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 15),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
                                         ),
-                                      ),
-                                      child: const Text(
-                                        'Log In',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
+                                        child: Obx(
+                                          () => controller.isLoading.value
+                                              ? CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                )
+                                              : Text(
+                                                  'Log In',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                        )),
                                   ),
                                   const SizedBox(height: 20),
-                                  const Text("Don't have an account yet?"),
-                                  TextButton(
-                                    onPressed: () {
-                                      // Sign Up button logic
-                                    },
-                                    child: const Text('Sign Up Here'),
-                                  ),
                                 ],
                               ),
                             ),
@@ -160,7 +172,6 @@ class LoginPageView extends GetView<LoginPageController> {
         ),
       ),
       onTap: () {
-        controller.changeState(index);
         Get.back(); // Close the drawer
       },
     );
