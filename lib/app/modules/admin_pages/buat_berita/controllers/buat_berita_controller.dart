@@ -7,6 +7,7 @@ import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 
 class BuatBeritaController extends GetxController {
   PlatformFile? file;
+  var fileNames = ''.obs;
   @override
   void onInit() {
     super.onInit();
@@ -26,6 +27,7 @@ class BuatBeritaController extends GetxController {
     FilePickerResult? resultImage = await FilePicker.platform.pickFiles();
     if (resultImage != null) {
       file = resultImage.files.first;
+      fileNames.value = file!.name;
       print(file?.name);
     } else {
       Get.snackbar('Informasi', 'Pemilihan Gambar Dibatalkan');
@@ -33,6 +35,11 @@ class BuatBeritaController extends GetxController {
   }
 
   void saveNews(String title, String description) async {
+    if (title.isEmpty || description.isEmpty) {
+      Get.snackbar('Error', 'Judul dan Deskripsi tidak boleh kosong',
+          backgroundColor: Colors.red);
+      return;
+    }
     print('saving news');
     String? linkUrl = await _uploadFile();
     print('eee:${linkUrl?.toString()}');

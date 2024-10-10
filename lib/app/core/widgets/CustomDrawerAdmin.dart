@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
@@ -53,7 +54,8 @@ Widget _buildDrawerItem(int index, String title, int currState) {
           // Get.toNamed('/home_admin');
           break;
         case 2:
-          // Get.toNamed('/login_page');
+          FirebaseAuth.instance.signOut();
+          Get.offAndToNamed(Routes.LANDING_PAGE);
           break;
       }
     },
