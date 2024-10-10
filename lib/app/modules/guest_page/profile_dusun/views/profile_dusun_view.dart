@@ -6,12 +6,30 @@ import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 import '../../../../core/styles/Text_Styles.dart';
 import '../../../../data/profile_dusun_data.dart';
 import '../controllers/profile_dusun_controller.dart';
+import 'dart:ui_web' as ui;
+import 'dart:html';
 
 class ProfileDusunView extends GetView<ProfileDusunController> {
   const ProfileDusunView({super.key});
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+
+    final IFrameElement iFrameElement = IFrameElement()
+      ..width = '100%' // Lebar iframe
+      ..height = '400' // Tinggi iframe
+      ..src =
+          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.610110781734!2d110.33527551161483!3d-8.180240784149937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ba44432cc234d%3A0xc14452bfaaf48fd8!2sPadem%2C%20Girikarto%2C%20Panggang%2C%20Gunung%20Kidul%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1669280394805!5m2!1sid!2sid'
+      ..style.border = 'none' // Hilangkan border
+      ..allowFullscreen = true // Mengizinkan full screen.
+      ..referrerPolicy = 'no-referrer-when-downgrade';
+
+    // Daftarkan factory view untuk iframe
+    ui.platformViewRegistry.registerViewFactory(
+      'google-maps',
+      (int viewId) => iFrameElement,
+    );
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -182,8 +200,7 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                     height: 200,
                     color: Colors.grey[300], // Placeholder for map
                     child: const Center(
-                      child: Text('Map Placeholder'),
-                    ),
+                        child: HtmlElementView(viewType: 'google-maps')),
                   ),
 
                   const SizedBox(height: 32),
