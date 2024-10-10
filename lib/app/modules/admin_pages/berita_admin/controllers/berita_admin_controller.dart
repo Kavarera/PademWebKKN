@@ -5,7 +5,6 @@ import '../../../../models/news_model.dart';
 
 class BeritaAdminController extends GetxController {
   var isFetching = false.obs;
-
   @override
   void onInit() {
     super.onInit();
@@ -39,6 +38,17 @@ class BeritaAdminController extends GetxController {
     } catch (e) {
       print("Error fetching news: $e");
       isFetching.value = false;
+    }
+  }
+
+  void deleteNews(String id) async {
+    try {
+      isFetching.value = true;
+      await FirebaseFirestore.instance.collection('news').doc(id).delete();
+      newsList.removeWhere((element) => element.id == id);
+      isFetching.value = false;
+    } catch (e) {
+      print("Error deleting news: $e");
     }
   }
 }

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 import 'package:padem_arsip_digital/app/core/views/error_screen.dart';
+import 'package:padem_arsip_digital/app/models/news_model.dart';
 
 import '../../../../core/styles/Text_Styles.dart';
 import '../../../../core/widgets/CustomAppBar.dart';
@@ -26,6 +27,13 @@ class BuatBeritaView extends GetView<BuatBeritaController> {
 
     TextEditingController _judulController = TextEditingController();
     TextEditingController _kontenController = TextEditingController();
+
+    NewsModelFirestore? news = Get.arguments as NewsModelFirestore?;
+    if (news != null) {
+      _judulController.text = news.title;
+      _kontenController.text = news.description;
+    }
+
     return Scaffold(
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +91,18 @@ class BuatBeritaView extends GetView<BuatBeritaController> {
                             ),
                           )
                         : primaryButton('Simpan', () {
-                            controller.saveNews(
-                              _judulController.text,
-                              _kontenController.text,
-                            );
+                            if (news != null) {
+                              controller.updateNews(
+                                news,
+                                _judulController.text,
+                                _kontenController.text,
+                              );
+                            } else {
+                              controller.saveNews(
+                                _judulController.text,
+                                _kontenController.text,
+                              );
+                            }
                           }))
                   ],
                 ),

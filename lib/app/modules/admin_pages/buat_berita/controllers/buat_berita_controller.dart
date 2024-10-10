@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
+import 'package:padem_arsip_digital/app/models/news_model.dart';
 import 'package:padem_arsip_digital/app/routes/app_pages.dart';
 
 class BuatBeritaController extends GetxController {
@@ -39,8 +40,8 @@ class BuatBeritaController extends GetxController {
   }
 
   void saveNews(String title, String description) async {
-    if (title.isEmpty || description.isEmpty) {
-      Get.snackbar('Error', 'Judul dan Deskripsi tidak boleh kosong',
+    if (title.isEmpty || description.isEmpty || file == null) {
+      Get.snackbar('Error', 'Judul, Deskripsi dan Gambar tidak boleh kosong',
           backgroundColor: Colors.red);
       return;
     }
@@ -85,6 +86,53 @@ class BuatBeritaController extends GetxController {
       return await snapshot.ref.getDownloadURL();
     } else {
       return null;
+    }
+  }
+
+  void updateNews(
+      NewsModelFirestore item, String title, String description) async {
+    if (title.isEmpty || description.isEmpty || file == null) {
+      Get.snackbar('Error', 'Judul, Deskripsi dan Gambar tidak boleh kosong',
+          backgroundColor: Colors.red);
+      return;
+    }
+
+    isUploading.value = true;
+    try {
+      print('updating news');
+      //deleting image in storage
+      final Uri uri = Uri.parse(item.imageUrl);
+      final path = uri.pathSegments.skip(4).join('/');
+      print('path storage = ${path.toString()}\n${uri.toString()}');
+      await FirebaseStorage.instance.ref().child(path).delete();
+      print('image deleted');
+      //upload new image
+      String? linkUrl = await _uploadFile();
+      //upload it to firebase database
+      await initializeDateFormatting('id_ID', null);
+      if (linkUrl != null) {
+        final newsData = {
+          'title': title,
+          'description': description,
+          'imageUrl': linkUrl.toString(),
+          'createdAt': DateFormat('EEEE, d MMM yyyy', Intl.defaultLocale)
+              .format(DateTime.now()),
+        };
+
+        await FirebaseFirestore.instance
+            .collection('news')
+            .doc(item.id)
+            .update(newsData);
+        Get.snackbar('Informasi', 'Berita berhasil diperbarui',
+            backgroundColor: CustomColors.FOREST_GREEN);
+        isUploading.value = false;
+        Get.offAndToNamed(Routes.BERITA_ADMIN);
+      } else {
+        Get.snackbar('Error', 'Gagal mengunggah gambar',
+            backgroundColor: Colors.red);
+      }
+    } catch (e) {
+      print('Error : ${e.toString()}');
     }
   }
 }

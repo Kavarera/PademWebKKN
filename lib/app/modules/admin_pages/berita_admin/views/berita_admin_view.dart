@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomButtons.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomDrawerAdmin.dart';
+import 'package:padem_arsip_digital/app/routes/app_pages.dart';
 
 import '../../../../core/colors/Colors_Value.dart';
 import '../../../../core/styles/Text_Styles.dart';
@@ -62,8 +63,16 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                           controller.fetchAllNews();
                         }
                         return controller.isFetching.value
-                            ? CircularProgressIndicator(
-                                color: CustomColors.FOREST_GREEN,
+                            ? Column(
+                                children: [
+                                  CircularProgressIndicator(
+                                    color: CustomColors.FOREST_GREEN,
+                                  ),
+                                  Text(
+                                    'Jumlah Berita : ${controller.newsList.length}',
+                                    style: CustomTexts.HEADING_2(),
+                                  ),
+                                ],
                               )
                             : Wrap(
                                 spacing: 16,
@@ -79,15 +88,6 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                                 }).toList());
                       },
                     )
-                    // Wrap(
-                    //     spacing: 16,
-                    //     runSpacing: 16,
-                    //     children: newsList.asMap().values.map((item) {
-                    //       return Column(children: [
-                    //         const SizedBox(height: 16),
-                    //         newsItem(item, width),
-                    //       ]);
-                    //     }).toList())
                   ],
                 ),
               ),
@@ -175,11 +175,15 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
               child: Row(
                 children: [
                   Expanded(
-                    child: dangerButton('Hapus', () {}),
+                    child: dangerButton('Hapus', () {
+                      controller.deleteNews(item.id);
+                    }),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: primaryButton('Edit', () {}),
+                    child: primaryButton('Edit', () {
+                      Get.offAndToNamed(Routes.BUAT_BERITA, arguments: item);
+                    }),
                   ),
                 ],
               ),
