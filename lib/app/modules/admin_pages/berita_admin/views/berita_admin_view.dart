@@ -7,7 +7,6 @@ import 'package:padem_arsip_digital/app/core/widgets/CustomDrawerAdmin.dart';
 
 import '../../../../core/colors/Colors_Value.dart';
 import '../../../../core/styles/Text_Styles.dart';
-import '../../../../core/widgets/CustomAppBar.dart';
 import '../../../../core/widgets/CustomTextField.dart';
 import '../../../../models/NewsModel.dart';
 import '../controllers/berita_admin_controller.dart';
@@ -19,10 +18,9 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
     double width = MediaQuery.of(context).size.width;
     TextEditingController searchController = TextEditingController();
     return Scaffold(
-      appBar: adminAppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.toNamed('/buat-berita');
+          Get.offAndToNamed('/buat-berita');
         },
         backgroundColor: CustomColors.OLIVE_GREEN,
         foregroundColor: Colors.white,
@@ -30,7 +28,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
       ),
       body: Row(
         children: [
-          drawerAdmin(3),
+          drawerAdmin(0),
           Expanded(
             child: SingleChildScrollView(
               child: Container(
