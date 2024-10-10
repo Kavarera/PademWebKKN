@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 
 import '../../../../core/styles/Text_Styles.dart';
 import '../../../../core/widgets/CustomAppBar.dart';
@@ -47,14 +51,30 @@ class BuatBeritaView extends GetView<BuatBeritaController> {
                       prefixIcon: Icon(Symbols.text_fields),
                     ),
                     const SizedBox(height: 16),
-                    textFieldWithoutLabel(
-                      controller: _gambarController,
-                      placeholder: 'Gambar (JPG, JPEG, PNG, WEBP) (max 5)',
-                      prefixIcon: Icon(Symbols.image),
-                      readOnly: true,
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all(
+                            CustomColors.LIGHT_OCEAN_BLUE,
+                          ),
+                        ),
+                        onPressed: () {
+                          controller.pickImage();
+                        },
+                        child: Text(
+                          'Pilih Gambar',
+                          style: CustomTexts.HEADING_3(color: Colors.white),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 16),
-                    primaryButton('Simpan', () {})
+                    primaryButton('Simpan', () {
+                      controller.saveNews(
+                        _judulController.text,
+                        _kontenController.text,
+                      );
+                    })
                   ],
                 ),
               ),
