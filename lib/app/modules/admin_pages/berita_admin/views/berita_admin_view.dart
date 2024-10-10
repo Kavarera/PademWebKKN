@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,14 +8,20 @@ import 'package:padem_arsip_digital/app/core/widgets/CustomDrawerAdmin.dart';
 
 import '../../../../core/colors/Colors_Value.dart';
 import '../../../../core/styles/Text_Styles.dart';
+import '../../../../core/views/error_screen.dart';
 import '../../../../core/widgets/CustomTextField.dart';
 import '../../../../models/NewsModel.dart';
+import '../../../../models/news_model.dart';
 import '../controllers/berita_admin_controller.dart';
 
 class BeritaAdminView extends GetView<BeritaAdminController> {
   const BeritaAdminView({super.key});
   @override
   Widget build(BuildContext context) {
+    if (FirebaseAuth.instance.currentUser == null) {
+      return ErrorScreen('Tidak Memiliki izin!');
+    }
+
     double width = MediaQuery.of(context).size.width;
     TextEditingController searchController = TextEditingController();
     return Scaffold(
@@ -49,15 +56,38 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                       suffixIcon: Icon(Symbols.search),
                     ),
                     const SizedBox(height: 16),
-                    Wrap(
-                        spacing: 16,
-                        runSpacing: 16,
-                        children: newsList.asMap().values.map((item) {
-                          return Column(children: [
-                            const SizedBox(height: 16),
-                            newsItem(item, width),
-                          ]);
-                        }).toList())
+                    Obx(
+                      () {
+                        if (controller.newsList.isEmpty) {
+                          controller.fetchAllNews();
+                        }
+                        return controller.isFetching.value
+                            ? CircularProgressIndicator(
+                                color: CustomColors.FOREST_GREEN,
+                              )
+                            : Wrap(
+                                spacing: 16,
+                                runSpacing: 16,
+                                children: controller.newsList
+                                    .asMap()
+                                    .values
+                                    .map((item) {
+                                  return Column(children: [
+                                    const SizedBox(height: 16),
+                                    newsItem(item, width),
+                                  ]);
+                                }).toList());
+                      },
+                    )
+                    // Wrap(
+                    //     spacing: 16,
+                    //     runSpacing: 16,
+                    //     children: newsList.asMap().values.map((item) {
+                    //       return Column(children: [
+                    //         const SizedBox(height: 16),
+                    //         newsItem(item, width),
+                    //       ]);
+                    //     }).toList())
                   ],
                 ),
               ),
@@ -68,10 +98,10 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
     );
   }
 
-  Widget newsItem(NewsModel item, double width) {
+  Widget newsItem(NewsModelFirestore item, double width) {
     return InkWell(
       onTap: () {
-        Get.toNamed('/detail-berita/${item.id}');
+        Get.offAndToNamed('/detail-berita/${item.id}');
       },
       child: Container(
         width: double.infinity,
@@ -99,7 +129,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
               child: AspectRatio(
                 aspectRatio: 4 / 3,
                 child: Image.network(
-                  item.imageLink[0],
+                  Uri.encodeFull(item.imageUrl),
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -118,14 +148,14 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                item.datetime,
+                item.createdAt,
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                'Oleh ${item.author}',
+                'Oleh Admin',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ),
@@ -133,7 +163,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                item.content,
+                item.description,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 14),

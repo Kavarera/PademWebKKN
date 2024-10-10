@@ -3,7 +3,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
+import 'package:padem_arsip_digital/app/routes/app_pages.dart';
 
 class BuatBeritaController extends GetxController {
   PlatformFile? file;
@@ -44,17 +47,20 @@ class BuatBeritaController extends GetxController {
     String? linkUrl = await _uploadFile();
     print('eee:${linkUrl?.toString()}');
     //upload it to firebase database
+    await initializeDateFormatting('id_ID', null);
     if (linkUrl != null) {
       final newsData = {
         'title': title,
         'description': description,
         'imageUrl': linkUrl,
-        'createdAt': DateTime.now().toIso8601String(),
+        'createdAt': DateFormat('EEEE, d MMM yyyy', Intl.defaultLocale)
+            .format(DateTime.now()),
       };
 
       await FirebaseFirestore.instance.collection('news').add(newsData);
       Get.snackbar('Informasi', 'Berita berhasil disimpan',
           backgroundColor: CustomColors.FOREST_GREEN);
+      Get.offAndToNamed(Routes.BUAT_BERITA);
     } else {
       Get.snackbar('Error', 'Gagal mengunggah gambar',
           backgroundColor: Colors.red);
@@ -66,9 +72,13 @@ class BuatBeritaController extends GetxController {
       final pathStorage =
           'berita/${DateTime.now().microsecondsSinceEpoch}${file!.name}';
       final ref = await FirebaseStorage.instance.ref().child(pathStorage);
-      UploadTask? _uploadTask = ref.putData(file!.bytes!);
+      SettableMetadata metadata =
+          SettableMetadata(contentType: 'image/${file!.extension}');
+      UploadTask? _uploadTask = ref.putData(file!.bytes!, metadata);
       final snapshot =
           await _uploadTask.whenComplete(() => print('Upload Berhasil'));
+
+      print("Meta Data = ${snapshot.ref.getMetadata().toString()}");
       return await snapshot.ref.getDownloadURL();
     } else {
       return null;
