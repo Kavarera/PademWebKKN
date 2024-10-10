@@ -45,7 +45,9 @@ class ListBeritaView extends GetView<ListBeritaController> {
                     controller: searchController,
                     placeholder: 'Cari berita...',
                     suffixIcon: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.searchNews(searchController.text);
+                      },
                       icon: Icon(Symbols.search),
                     ),
                   ),

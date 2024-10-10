@@ -22,7 +22,7 @@ class ListBeritaController extends GetxController {
   }
 
   var newsList = <NewsModelFirestore>[].obs;
-
+  List<NewsModelFirestore> _news = [];
   getBeritaPage() {
     return DetailBeritaView(
       BERITAID: currentBeritaId.value,
@@ -45,6 +45,17 @@ class ListBeritaController extends GetxController {
     } catch (e) {
       print("Error fetching news: $e");
       isFetching.value = false;
+    }
+  }
+
+  void searchNews(String text) {
+    if (text.isEmpty) {
+      fetchNews();
+    } else {
+      newsList.value = newsList
+          .where((element) =>
+              element.title.toLowerCase().contains(text.toLowerCase()))
+          .toList();
     }
   }
 }
