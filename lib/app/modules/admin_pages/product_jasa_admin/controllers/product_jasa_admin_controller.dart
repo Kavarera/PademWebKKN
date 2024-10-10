@@ -4,6 +4,7 @@ import 'package:padem_arsip_digital/app/models/product_jasa_model.dart';
 
 class ProductJasaAdminController extends GetxController {
   var isFetching = false.obs;
+  var isSearching = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,7 +20,7 @@ class ProductJasaAdminController extends GetxController {
     super.onClose();
   }
 
-  List<ProductJasaFirestoreModel> productList = [];
+  var productList = <ProductJasaFirestoreModel>[].obs;
 
   Future<void> fetchAllProduct() async {
     try {
@@ -27,7 +28,7 @@ class ProductJasaAdminController extends GetxController {
       Future.delayed(Duration(seconds: 2));
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('store').get();
-      productList = querySnapshot.docs
+      productList.value = querySnapshot.docs
           .map((doc) => ProductJasaFirestoreModel.fromFirestore(doc))
           .toList();
       productList.forEach((element) {
@@ -48,6 +49,17 @@ class ProductJasaAdminController extends GetxController {
       isFetching.value = false;
     } catch (e) {
       print("Error deleting store: $e");
+    }
+  }
+
+  void searchProduct(String text) {
+    if (text.isEmpty) {
+      fetchAllProduct();
+    } else {
+      productList.value = productList
+          .where((element) =>
+              element.title.toLowerCase().contains(text.toLowerCase()))
+          .toList();
     }
   }
 }

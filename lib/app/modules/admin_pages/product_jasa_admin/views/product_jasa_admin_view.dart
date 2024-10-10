@@ -24,6 +24,8 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
     }
     double width = MediaQuery.of(context).size.width;
     TextEditingController searchController = TextEditingController();
+
+    controller.fetchAllProduct();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -42,6 +44,7 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
                   width: width,
                   padding: const EdgeInsets.all(16),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
@@ -53,38 +56,38 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
                       textFieldWithLabel(
                         controller: searchController,
                         placeholder: 'Cari Produk atau Jasa...',
-                        suffixIcon: Icon(Symbols.search),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            controller.searchProduct(searchController.text);
+                          },
+                          icon: Icon(Symbols.search),
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Obx(
                         () {
-                          if (controller.productList.isEmpty) {
-                            controller.fetchAllProduct();
-                          }
                           return controller.isFetching.value
                               ? Column(
                                   children: [
                                     CircularProgressIndicator(
                                       color: CustomColors.FOREST_GREEN,
                                     ),
-                                    Text(
-                                      'Jumlah Product : ${controller.productList.length}',
-                                      style: CustomTexts.HEADING_2(),
-                                    ),
                                   ],
                                 )
-                              : Wrap(
-                                  spacing: 16,
-                                  runSpacing: 16,
-                                  children: controller.productList
-                                      .asMap()
-                                      .values
-                                      .map((item) {
-                                    return Column(children: [
-                                      const SizedBox(height: 16),
-                                      productItem(item, width),
-                                    ]);
-                                  }).toList());
+                              : controller.productList.isEmpty
+                                  ? Text(
+                                      'Data Kosong',
+                                      style: CustomTexts.HEADING_2(),
+                                    )
+                                  : Wrap(
+                                      spacing: 16,
+                                      runSpacing: 16,
+                                      children: controller.productList
+                                          .asMap()
+                                          .values
+                                          .map((e) => productItem(e, width))
+                                          .toList(),
+                                    );
                         },
                       )
                     ],
