@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:padem_arsip_digital/app/core/widgets/CustomTextField.dart';
 
 import '../../../../core/colors/Colors_Value.dart';
 import '../../../../core/styles/Text_Styles.dart';
+import '../../../../core/views/error_screen.dart';
 import '../../../../core/widgets/CustomAppBar.dart';
 import '../../../../core/widgets/CustomButtons.dart';
 import '../controllers/profile_dusun_admin_controller.dart';
@@ -15,6 +17,9 @@ class ProfileDusunAdminView extends GetView<ProfileDusunAdminController> {
   const ProfileDusunAdminView({super.key});
   @override
   Widget build(BuildContext context) {
+    if (FirebaseAuth.instance.currentUser == null) {
+      return ErrorScreen('Tidak Memiliki izin!');
+    }
     TextEditingController _logoController = TextEditingController();
     TextEditingController _filosofiController = TextEditingController();
     TextEditingController _visiController = TextEditingController();

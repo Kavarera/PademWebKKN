@@ -16,6 +16,8 @@ abstract class Routes {
   static const BERITA_ADMIN = _Paths.BERITA_ADMIN;
   static const BUAT_BERITA = _Paths.BUAT_BERITA;
   static const INFOGRAFIS = _Paths.INFOGRAFIS;
+  static const PRODUCT_JASA_ADMIN = _Paths.PRODUCT_JASA_ADMIN;
+  static const BUAT_PRODUCT_DAN_JASA = _Paths.BUAT_PRODUCT_DAN_JASA;
 }
 
 abstract class _Paths {
@@ -33,4 +35,6 @@ abstract class _Paths {
   static const BERITA_ADMIN = '/berita-admin';
   static const BUAT_BERITA = '/buat-berita';
   static const INFOGRAFIS = '/infografis';
+  static const PRODUCT_JASA_ADMIN = '/product-jasa-admin';
+  static const BUAT_PRODUCT_DAN_JASA = '/buat-product-dan-jasa';
 }

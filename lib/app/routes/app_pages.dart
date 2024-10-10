@@ -4,8 +4,12 @@ import '../modules/admin_pages/berita_admin/bindings/berita_admin_binding.dart';
 import '../modules/admin_pages/berita_admin/views/berita_admin_view.dart';
 import '../modules/admin_pages/buat_berita/bindings/buat_berita_binding.dart';
 import '../modules/admin_pages/buat_berita/views/buat_berita_view.dart';
+import '../modules/admin_pages/buat_product_dan_jasa/bindings/buat_product_dan_jasa_binding.dart';
+import '../modules/admin_pages/buat_product_dan_jasa/views/buat_product_dan_jasa_view.dart';
 import '../modules/admin_pages/home_admin/bindings/home_admin_binding.dart';
 import '../modules/admin_pages/home_admin/views/home_admin_view.dart';
+import '../modules/admin_pages/product_jasa_admin/bindings/product_jasa_admin_binding.dart';
+import '../modules/admin_pages/product_jasa_admin/views/product_jasa_admin_view.dart';
 import '../modules/admin_pages/profile_dusun_admin/bindings/profile_dusun_admin_binding.dart';
 import '../modules/admin_pages/profile_dusun_admin/views/profile_dusun_admin_view.dart';
 import '../modules/guest_page/belanja_page/bindings/belanja_page_binding.dart';
@@ -81,6 +85,16 @@ class AppPages {
       name: _Paths.INFOGRAFIS,
       page: () => InfografisView(),
       binding: InfografisBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRODUCT_JASA_ADMIN,
+      page: () => const ProductJasaAdminView(),
+      binding: ProductJasaAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUAT_PRODUCT_DAN_JASA,
+      page: () => const BuatProductDanJasaView(),
+      binding: BuatProductDanJasaBinding(),
     ),
   ];
 }

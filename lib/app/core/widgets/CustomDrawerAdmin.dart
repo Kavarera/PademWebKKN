@@ -51,7 +51,7 @@ Widget _buildDrawerItem(int index, String title, int currState) {
           Get.offAndToNamed(Routes.BERITA_ADMIN);
           break;
         case 1:
-          // Get.toNamed('/home_admin');
+          Get.offAndToNamed(Routes.PRODUCT_JASA_ADMIN);
           break;
         case 2:
           FirebaseAuth.instance.signOut();
