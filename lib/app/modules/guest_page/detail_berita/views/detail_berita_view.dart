@@ -9,84 +9,88 @@ import 'package:padem_arsip_digital/app/models/NewsModel.dart';
 import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
 
 import '../controllers/detail_berita_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DetailBeritaView extends GetView<DetailBeritaController> {
-  final int BERITAID;
+  final String BERITAID;
   const DetailBeritaView({required this.BERITAID, super.key});
   @override
   Widget build(BuildContext context) {
     // int id = int.parse(Get.parameters['id']!);
     double width = MediaQuery.of(context).size.width;
 
-    List<Widget> imageList =
-        newsList[BERITAID].imageLink.asMap().values.map((item) {
-      return AspectRatio(
-        aspectRatio: 4 / 3,
-        child: Image.network(
-          item,
-          fit: BoxFit.cover,
-        ),
-      );
-    }).toList();
     CarouselSliderController carouselController = CarouselSliderController();
+    print('BERITAID = $BERITAID');
+    controller.getNews(BERITAID);
     return Scaffold(
       // appBar: getCoreAppBar('Padem Pedia', Get.find<LandingPageController>()),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: 800,
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.find<LandingPageController>().setNews(false, 0);
-                            Get.find<LandingPageController>().changeState(3);
-                          },
-                          icon: Icon(Icons.arrow_back),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              newsList[BERITAID].title,
-                              style: CustomTexts.HEADING_2(),
+      body: SingleChildScrollView(child: Obx(() {
+        if (controller.CurrentNews.value == null) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return Column(
+            children: [
+              Center(
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: 800,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Get.find<LandingPageController>()
+                                  .setNews(false, '');
+                              Get.find<LandingPageController>().changeState(3);
+                            },
+                            icon: Icon(Icons.arrow_back),
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                controller.CurrentNews.value!.title,
+                                style: CustomTexts.HEADING_2(),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      newsList[BERITAID].datetime,
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                    Text(
-                      'Oleh ${newsList[BERITAID].author}',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                    const SizedBox(height: 32),
-                    imageCarousel(imageList, carouselController, 4 / 3),
-                    const SizedBox(height: 32),
-                    Text(
-                      newsList[BERITAID].content,
-                      softWrap: true,
-                    ),
-                    const SizedBox(height: 32),
-                  ],
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        controller.CurrentNews.value!.createdAt,
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      Text(
+                        'Oleh Admin',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      const SizedBox(height: 32),
+                      Image.network(
+                        controller.CurrentNews.value!.imageUrl,
+                        fit: BoxFit.cover,
+                      ),
+                      // imageCarousel(imageList, carouselController, 4 / 3),
+                      const SizedBox(height: 32),
+                      Text(
+                        controller.CurrentNews.value!.description,
+                        softWrap: true,
+                      ),
+                      const SizedBox(height: 32),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            CustomFooter(width),
-          ],
-        ),
-      ),
+              CustomFooter(width),
+            ],
+          );
+        }
+      })),
     );
   }
 }

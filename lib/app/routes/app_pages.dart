@@ -57,7 +57,7 @@ class AppPages {
     GetPage(
       name: '${_Paths.DETAIL_BERITA}/:id',
       page: () => DetailBeritaView(
-        BERITAID: 0,
+        BERITAID: '',
       ),
       binding: DetailBeritaBinding(),
     ),

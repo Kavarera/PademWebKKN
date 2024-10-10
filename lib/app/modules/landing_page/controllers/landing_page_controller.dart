@@ -11,7 +11,7 @@ import 'package:padem_arsip_digital/app/modules/login_page/views/login_page_view
 class LandingPageController extends GetxController {
   var STATE = 0.obs;
   var _ISONNEWS = false.obs;
-  var _idNews = 0.obs;
+  var _idNews = ''.obs;
 
   @override
   void onInit() {
@@ -32,7 +32,7 @@ class LandingPageController extends GetxController {
     this.STATE.value = i;
   }
 
-  void setNews(bool value, int id) {
+  void setNews(bool value, String id) {
     if (value == true) {
       if (STATE.value >= 0) {
         STATE.value = -1;

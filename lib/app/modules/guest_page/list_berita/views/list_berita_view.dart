@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomTextField.dart';
+import 'package:padem_arsip_digital/app/models/news_model.dart';
 import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
 
 import '../../../../models/NewsModel.dart';
@@ -16,6 +17,8 @@ class ListBeritaView extends GetView<ListBeritaController> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     TextEditingController searchController = TextEditingController();
+
+    controller.fetchNews();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -41,18 +44,32 @@ class ListBeritaView extends GetView<ListBeritaController> {
                   textFieldWithLabel(
                     controller: searchController,
                     placeholder: 'Cari berita...',
-                    suffixIcon: Icon(Symbols.search),
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Symbols.search),
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  Wrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: newsList.asMap().values.map((item) {
-                        return Column(children: [
-                          const SizedBox(height: 16),
-                          newsItem(item, width),
-                        ]);
-                      }).toList())
+                  Obx(() {
+                    if (controller.newsList.isEmpty) {
+                      return Center(
+                        child: Text(
+                          'Tidak ada berita',
+                          style: CustomTexts.HEADING_2(),
+                        ),
+                      );
+                    }
+                    return Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children:
+                            controller.newsList.asMap().values.map((item) {
+                          return Column(children: [
+                            const SizedBox(height: 16),
+                            newsItem(item, width),
+                          ]);
+                        }).toList());
+                  })
                 ],
               ),
             ),
@@ -64,7 +81,7 @@ class ListBeritaView extends GetView<ListBeritaController> {
     );
   }
 
-  Widget newsItem(NewsModel item, double width) {
+  Widget newsItem(NewsModelFirestore item, double width) {
     return InkWell(
       onTap: () {
         try {
@@ -102,7 +119,7 @@ class ListBeritaView extends GetView<ListBeritaController> {
               child: AspectRatio(
                 aspectRatio: 4 / 3,
                 child: Image.network(
-                  item.imageLink[0],
+                  item.imageUrl.toString(),
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -121,14 +138,14 @@ class ListBeritaView extends GetView<ListBeritaController> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                item.datetime,
+                item.createdAt,
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                'Oleh ${item.author}',
+                'Oleh Admin',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ),
@@ -136,7 +153,7 @@ class ListBeritaView extends GetView<ListBeritaController> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                item.content,
+                item.description,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 14),
