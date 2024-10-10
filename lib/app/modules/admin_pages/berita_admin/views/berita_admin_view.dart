@@ -25,6 +25,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
 
     double width = MediaQuery.of(context).size.width;
     TextEditingController searchController = TextEditingController();
+    controller.fetchAllNews();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -54,14 +55,15 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                     textFieldWithLabel(
                       controller: searchController,
                       placeholder: 'Cari berita...',
-                      suffixIcon: Icon(Symbols.search),
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            controller.searchNews(searchController.text);
+                          },
+                          icon: Icon(Symbols.search)),
                     ),
                     const SizedBox(height: 16),
                     Obx(
                       () {
-                        if (controller.newsList.isEmpty) {
-                          controller.fetchAllNews();
-                        }
                         return controller.isFetching.value
                             ? Column(
                                 children: [
@@ -74,18 +76,23 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                                   ),
                                 ],
                               )
-                            : Wrap(
-                                spacing: 16,
-                                runSpacing: 16,
-                                children: controller.newsList
-                                    .asMap()
-                                    .values
-                                    .map((item) {
-                                  return Column(children: [
-                                    const SizedBox(height: 16),
-                                    newsItem(item, width),
-                                  ]);
-                                }).toList());
+                            : controller.newsList.isEmpty
+                                ? Text(
+                                    'Tidak ada berita',
+                                    style: CustomTexts.HEADING_2(),
+                                  )
+                                : Wrap(
+                                    spacing: 16,
+                                    runSpacing: 16,
+                                    children: controller.newsList
+                                        .asMap()
+                                        .values
+                                        .map((item) {
+                                      return Column(children: [
+                                        const SizedBox(height: 16),
+                                        newsItem(item, width),
+                                      ]);
+                                    }).toList());
                       },
                     )
                   ],

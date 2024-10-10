@@ -20,7 +20,7 @@ class BeritaAdminController extends GetxController {
     super.onClose();
   }
 
-  List<NewsModelFirestore> newsList = [];
+  var newsList = <NewsModelFirestore>[].obs;
 
   Future<void> fetchAllNews() async {
     try {
@@ -28,7 +28,7 @@ class BeritaAdminController extends GetxController {
       Future.delayed(Duration(seconds: 2));
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('news').get();
-      newsList = querySnapshot.docs
+      newsList.value = querySnapshot.docs
           .map((doc) => NewsModelFirestore.fromDocument(doc))
           .toList();
       newsList.forEach((element) {
@@ -49,6 +49,17 @@ class BeritaAdminController extends GetxController {
       isFetching.value = false;
     } catch (e) {
       print("Error deleting news: $e");
+    }
+  }
+
+  void searchNews(String text) {
+    if (text.isEmpty) {
+      fetchAllNews();
+    } else {
+      newsList.value = newsList
+          .where((element) =>
+              element.title.toLowerCase().contains(text.toLowerCase()))
+          .toList();
     }
   }
 }
