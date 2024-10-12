@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/belanja_page/views/belanja_page_view.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/detail_berita/views/detail_berita_view.dart';
@@ -46,23 +45,21 @@ class LandingPageController extends GetxController {
 
   getPage(int value) {
     print("news = ${_ISONNEWS.value}");
-    if (_ISONNEWS.value) {
-      return toNews();
-    } else {
-      switch (value) {
-        case 0:
-          return BerandaView();
-        case 1:
-          return ProfileDusunView();
-        case 2:
-          return InfografisView();
-        case 3:
-          return ListBeritaView();
-        case 4:
-          return BelanjaPageView();
-        default:
-          return LoginPageView();
-      }
+    switch (value) {
+      case 0:
+        return BerandaView();
+      case 1:
+        return ProfileDusunView();
+      case 2:
+        return InfografisView();
+      case 3:
+        return ListBeritaView();
+      case 4:
+        return BelanjaPageView();
+      case 6:
+        return toNews();
+      default:
+        return LoginPageView();
     }
   }
 

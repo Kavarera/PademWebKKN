@@ -11,29 +11,32 @@ Drawer drawerAdmin(int currState) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.zero, // This removes the rounded edges
     ),
-    child: ListView(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      children: [
-        Column(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                'https://cdn-icons-png.flaticon.com/512/9706/9706583.png',
+    child: Container(
+      height: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                  'https://cdn-icons-png.flaticon.com/512/9706/9706583.png',
+                ),
+                radius: 48,
               ),
-              radius: 48,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Admin',
-              style: CustomTexts.HEADING_4(color: Colors.white),
-            ),
-          ],
-        ),
-        const SizedBox(height: 32),
-        _buildDrawerItem(0, 'Berita', currState),
-        _buildDrawerItem(1, 'Produk dan Jasa', currState),
-        _buildDrawerItem(2, 'Logout', currState),
-      ],
+              const SizedBox(height: 8),
+              Text(
+                'Admin',
+                style: CustomTexts.HEADING_4(color: Colors.white),
+              ),
+            ],
+          ),
+          const SizedBox(height: 32),
+          _buildDrawerItem(0, 'Berita', currState),
+          _buildDrawerItem(1, 'Produk dan Jasa', currState),
+          _buildDrawerItem(2, 'Logout', currState),
+        ],
+      ),
     ),
   );
 }

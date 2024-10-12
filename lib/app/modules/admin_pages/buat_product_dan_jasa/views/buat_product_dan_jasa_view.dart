@@ -139,20 +139,22 @@ class BuatProductDanJasaView extends GetView<BuatProductDanJasaController> {
                         : primaryButton(
                             'Simpan',
                             () {
-                              // if (news != null) {
-                              //   controller.updateNews(
-                              //     news,
-                              //     _judulController.text,
-                              //     _kontenController.text,
-                              //   );
-                              // } else {
-
-                              controller.saveProduct(
-                                _judulController.text,
-                                _kontenController.text,
-                                _hargaController.text,
-                                _contactController.text,
-                              );
+                              if (_product != null) {
+                                controller.updateProduct(
+                                  _product,
+                                  _judulController.text,
+                                  _kontenController.text,
+                                  _hargaController.text,
+                                  _contactController.text,
+                                );
+                              } else {
+                                controller.saveProduct(
+                                  _judulController.text,
+                                  _kontenController.text,
+                                  _hargaController.text,
+                                  _contactController.text,
+                                );
+                              }
                             },
                           ))
                   ],

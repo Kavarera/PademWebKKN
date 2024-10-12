@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/enums/product_dan_jasa_enum.dart';
+import 'package:padem_arsip_digital/app/models/product_jasa_model.dart';
 
 import '../../../../core/colors/Colors_Value.dart';
 import '../../../../routes/app_pages.dart';
@@ -95,6 +96,60 @@ class BuatProductDanJasaController extends GetxController {
     } else {
       Get.snackbar('Error', 'Gagal Upload Gambar',
           backgroundColor: Colors.red, colorText: Colors.white);
+    }
+  }
+
+  void updateProduct(ProductJasaFirestoreModel item, String title,
+      String content, String harga, String contact) async {
+    if (title.isEmpty ||
+        content.isEmpty ||
+        harga.isEmpty ||
+        contact.isEmpty ||
+        file == null ||
+        harga.isNumericOnly == false ||
+        contact.isNumericOnly == false) {
+      Get.snackbar('Error',
+          'Semua bagian tidak boleh kosong dan harga serta contact harus angka',
+          backgroundColor: Colors.red);
+      return;
+    }
+
+    isUploading.value = true;
+    try {
+      print('updating produk/jasa');
+      //deleting image in storage
+      final Uri uri = Uri.parse(item.imageUrl);
+      final path = uri.pathSegments.skip(4).join('/');
+      print('path storage = ${path.toString()}\n${uri.toString()}');
+      await FirebaseStorage.instance.ref().child(path).delete();
+      print('image deleted');
+      //upload new image
+      String? linkUrl = await _uploadFile();
+      //upload it to firebase database
+      if (linkUrl != null) {
+        final storeData = {
+          'title': title,
+          'content': content,
+          'harga': double.parse(harga),
+          'contact': contact,
+          'imageUrl': linkUrl.toString(),
+          'category': selectedCategory.value.value,
+        };
+
+        await FirebaseFirestore.instance
+            .collection('store')
+            .doc(item.id)
+            .update(storeData);
+        Get.snackbar('Informasi', 'Produk/jasa berhasil diperbarui',
+            backgroundColor: CustomColors.FOREST_GREEN);
+        isUploading.value = false;
+        Get.offAndToNamed(Routes.PRODUCT_JASA_ADMIN);
+      } else {
+        Get.snackbar('Error', 'Gagal mengunggah gambar',
+            backgroundColor: Colors.red);
+      }
+    } catch (e) {
+      print('Error : ${e.toString()}');
     }
   }
 

@@ -18,7 +18,7 @@ AppBar getCoreAppBar(String title, LandingPageController controller) {
   );
   return AppBar(
     title: Text(title),
-    leading: FlutterLogo(),
+    leading: Image.asset('assets/images/logo_padem_lq.png'),
     backgroundColor: CustomColors.OLIVE_GREEN,
     foregroundColor: Colors.white,
     elevation: 4.0,
@@ -43,7 +43,7 @@ AppBar getCoreAppBar(String title, LandingPageController controller) {
         style: controller.STATE.value == 1 ? activeStyle : passiveStyle,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          child: Text("Profile Dusun"),
+          child: Text("Profil Dusun"),
         ),
       ),
       SizedBox(
@@ -105,7 +105,7 @@ AppBar getCoreAppBar(String title, LandingPageController controller) {
 AppBar adminAppBar() {
   return AppBar(
     title: Text('Padem Pedia'),
-    leading: FlutterLogo(),
+    leading: Image.asset('assets/images/logo_padem_lq.png'),
     backgroundColor: CustomColors.OLIVE_GREEN,
     foregroundColor: Colors.white,
     elevation: 4.0,

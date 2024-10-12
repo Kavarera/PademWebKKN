@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 import 'package:padem_arsip_digital/app/data/infografis_data.dart';
 
 class DestinasiWisataWidgetState extends StatelessWidget {
@@ -31,7 +29,8 @@ class DestinasiWisataWidgetState extends StatelessWidget {
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              crossAxisSpacing: 10,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
             ),
             itemCount: 3,
             itemBuilder: (context, index) {
@@ -54,38 +53,50 @@ class _itemImageCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Stack(
-        children: [
-          Image.asset(
-            image['pic']!,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.transparent,
-                  CustomColors.ORANGE,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5),
+        child: Stack(
+          children: [
+            Image.asset(
+              image['pic']!,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 86,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 236, 204, 162),
+                      Color.fromARGB(0, 114, 82, 1)
+                    ],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                  ),
+                ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 20,
-            left: 50,
-            child: Text(
-              image['name']!,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  image['name']!,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

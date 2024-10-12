@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:padem_arsip_digital/app/models/product_jasa_model.dart';
 import 'package:padem_arsip_digital/app/modules/guest_page/belanja_page/controllers/belanja_page_controller.dart';
-import '../../../../core/enums/product_dan_jasa_enum.dart';
 import '../../../../core/views/error_screen.dart';
 import '../../../../core/widgets/CustomFooter.dart';
 
@@ -14,7 +14,8 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width < 400) {
+    double width = MediaQuery.of(context).size.width;
+    if (width < 400) {
       return ErrorScreen(
           "Resolusi lebar layar anda dibawah 500\nMohon ubah resolusi layar dengan mengaktifkan fitur desktop.");
     }
@@ -23,194 +24,237 @@ class BelanjaPageView extends GetView<BelanjaPageController> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Center(
-            child: Text(
-              "Beli Dari Dusun",
-              style: CustomTexts.HEADING_2(),
-            ),
-          ),
-          //Tab Button Section
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-            decoration: BoxDecoration(
-              color: CustomColors.LIGHT_OCEAN_BLUE,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
               children: [
-                TextButton(
-                  onPressed: () {
-                    controller.filterProduct(ProductJasaEnum.HOMESTAY);
-                  },
+                Center(
                   child: Text(
-                    "Homestay",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    "Produk dan Jasa",
+                    style: CustomTexts.HEADING_2(),
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    controller.filterProduct(ProductJasaEnum.CULINARY);
+                const SizedBox(height: 16),
+                //Tab Button Section
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (constraints.maxWidth < 800) {
+                      return DropdownButtonHideUnderline(
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: CustomColors.LIGHT_OCEAN_BLUE,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: DropdownButton<Map<String, dynamic>>(
+                            iconEnabledColor: Colors.white,
+                            items: controller.menuList.map((item) {
+                              return DropdownMenuItem<Map<String, dynamic>>(
+                                value: item,
+                                child: Text(
+                                  item['title'],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (Map<String, dynamic>? selectedItem) {
+                              if (selectedItem != null) {
+                                controller.changeState(selectedItem['title']);
+                                controller.filterProduct(selectedItem['enum']);
+                              }
+                            },
+                            hint: Obx(
+                              () => Text(
+                                controller.STATE.value,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            dropdownColor: CustomColors.LIGHT_OCEAN_BLUE,
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: CustomColors.LIGHT_OCEAN_BLUE,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: controller.menuList.map((item) {
+                              return TextButton(
+                                onPressed: () {
+                                  controller.changeState(item['title']);
+                                  controller.filterProduct(item['enum']);
+                                },
+                                child: Text(
+                                  item['title'],
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              );
+                            }).toList()),
+                      );
+                    }
                   },
-                  child: Text(
-                    "Culinary",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    controller.filterProduct(ProductJasaEnum.TOURGUIDE);
-                  },
-                  child: Text(
-                    "Tourist Guide",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    controller.filterProduct(ProductJasaEnum.RETAILSTORE);
-                  },
-                  child: Text(
-                    "Retail Store",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+
+                // SizedBox(
+                //   height: 16,
+                // ),
               ],
             ),
           ),
-          SizedBox(
-            height: 30,
-          ),
           Expanded(
-            child: Obx(() {
-              if (controller.visibleProductList.isEmpty) {
-                return Center(
-                  child:
-                      Text('Tidak Ada Produk', style: CustomTexts.HEADING_2()),
-                );
-              }
-              return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: MediaQuery.of(context).size.width < 1000
-                      ? 1
-                      : MediaQuery.of(context).size.width < 1200
-                          ? 2
-                          : 3,
-                  mainAxisSpacing: 100,
-                ),
-                itemBuilder: (context, index) => Container(
-                  color: Colors.red,
-                  child: ProductCard(controller.visibleProductList[index]),
-                ),
-                itemCount: controller.visibleProductList.length,
-                shrinkWrap: true,
-              );
-            }),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(() {
+                    if (!controller.isFetching.value &&
+                        controller.visibleProductList.isEmpty) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 100, horizontal: 16),
+                        child: Center(
+                          child: Text('Tidak Ada Produk',
+                              style: CustomTexts.HEADING_2()),
+                        ),
+                      );
+                    } else if (controller.isFetching.value) {
+                      return Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(100),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    } else {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Wrap(
+                                spacing: 16,
+                                runSpacing: 16,
+                                children: controller.visibleProductList
+                                    .asMap()
+                                    .values
+                                    .map((item) {
+                                  return Column(children: [
+                                    const SizedBox(height: 16),
+                                    ProductCard(item, width),
+                                  ]);
+                                }).toList()),
+                            const SizedBox(height: 16)
+                          ],
+                        ),
+                      );
+                    }
+                  }),
+                  const SizedBox(height: 16),
+                  CustomFooter(width),
+                ],
+              ),
+            ),
           ),
-          // Footer Section
-          // CustomFooter(MediaQuery.of(context).size.width),
         ],
       ),
     );
   }
 
-  Widget ProductCard(ProductJasaFirestoreModel product) {
+  Widget ProductCard(ProductJasaFirestoreModel product, double width) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      width: width < 600
+          ? width
+          : width < 1200
+              ? (width - 48) / 2
+              : (width - 64) / 3,
       decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
+        ),
         color: Colors.white,
-        boxShadow: [
+        boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 12,
-            offset: Offset(4, 4),
-          ),
+            blurRadius: 4,
+            offset: Offset(2, 2),
+          )
         ],
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 12,
-                  offset: Offset(4, 4),
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(5),
+              topRight: Radius.circular(5),
+            ),
+            child: AspectRatio(
+              aspectRatio: 4 / 3,
+              child: Image.network(
+                product.imageUrl.toString(),
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              product.title,
+              style: CustomTexts.HEADING_4(),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              NumberFormat.currency(
+                      locale: 'id', symbol: 'Rp ', decimalDigits: 0)
+                  .format(product.harga),
+              style: CustomTexts.HEADING_5(color: CustomColors.FOREST_GREEN),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: SizedBox(
+              height: 42,
+              child: Text(
+                product.content,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Icon(
+                  Symbols.call,
+                  size: 24,
                 ),
+                const SizedBox(width: 8),
+                Text(product.contact)
               ],
             ),
-            padding: const EdgeInsets.all(5), // Reduced padding
-            child: Image.network(
-              product.imageUrl.toString(),
-              fit: BoxFit.contain,
-            ),
           ),
-          //Title card
-          Text(
-            product.title,
-            style: CustomTexts.HEADING_3(),
-          ),
-          //Description
-          Text(
-            product.content,
-            softWrap: true,
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.end,
-            maxLines: 3, // Limit the number of lines
-            style: TextStyle(height: 1.2), // Adjust line height for compactness
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: CustomColors.PEACH,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.all(5), // Reduced padding
-                child: Text(
-                  NumberFormat.currency(
-                          locale: 'id', symbol: 'Rp ', decimalDigits: 0)
-                      .format(product.harga),
-                  style: CustomTexts.HEADING_4(),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: CustomColors.FOREST_GREEN,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.all(5), // Reduced padding
-                child: Text(
-                  product.contact,
-                  style: CustomTexts.HEADING_4().apply(color: Colors.white),
-                ),
-              ),
-            ],
-          )
+          const SizedBox(height: 16),
         ],
       ),
     );

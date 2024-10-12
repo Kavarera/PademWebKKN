@@ -37,71 +37,57 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Profile Section (Logo + Visi Misi)
+                  Text(
+                    'Profil Dusun',
+                    style: CustomTexts.HEADING_2(),
+                    textAlign: TextAlign.center,
+                  ),
                   Wrap(
                     alignment: WrapAlignment.center,
                     spacing: 16,
                     runSpacing: 16,
                     children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.green[100],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Text(
-                            'LOGO',
-                            style: CustomTexts.HEADING_3(),
-                          ),
-                        ), // Placeholder for logo
+                      Image.asset(
+                        'assets/images/logo_padem.png',
+                        width: 360,
                       ),
                       Container(
                         width: width < 600 ? width : null,
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Center(
                               child: Text(
                                 'VISI',
                                 style: CustomTexts.HEADING_3(),
-                              ),
-                            ),
-                            Center(
-                              child: Text(
-                                PADEM_VISI,
-                                softWrap: true,
                                 textAlign: TextAlign.center,
                               ),
                             ),
+                            Text(
+                              PADEM_VISI,
+                              softWrap: true,
+                              textAlign: TextAlign.center,
+                            ),
                             SizedBox(height: 8),
-                            Center(
-                              child: Text(
-                                'MISI',
-                                style: CustomTexts.HEADING_3(),
-                              ),
+                            Text(
+                              'MISI',
+                              style: CustomTexts.HEADING_3(),
+                              textAlign: TextAlign.center,
                             ),
                             Center(
-                              child: SizedBox(
-                                height: 300,
-                                child: ListView.builder(
-                                  itemCount: PADEM_MISI.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      child: Center(
-                                        child: Text(
-                                          '${index + 1}. ${PADEM_MISI[index]}',
-                                          softWrap: true,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children:
+                                    PADEM_MISI.asMap().entries.map((misi) {
+                                  return Text(
+                                    '${misi.key + 1}. ${misi.value}',
+                                    textAlign: TextAlign.center,
+                                    softWrap: true,
+                                  );
+                                }).toList(),
                               ),
                             ),
                           ],
@@ -111,15 +97,15 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                   ),
 
                   const SizedBox(height: 32),
-
-                  // Asal Usul Section
                   Text(
                     'ASAL USUL',
                     style: CustomTexts.HEADING_3(),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Tidak diketahui secara pasti tahun berdirinya Padukuhan Padem. Menurut sesepuh setempat, Padukuhan Padem didirikan oleh seorang bernama Mbah Tijoyo. Mbah Tijoyo merupakan pendatang yang berasal dari Wonosari, Gunung Kidul. Beliau dan beberapa kawannya sepakat untuk mendirikan Padukuhan Padem bersama. Nama Padem sendiri konon diberikan oleh Sunan Kalijaga yang kebetulan melewati padukuhan ini. Nama “Padem” berasal dari kata “Adem” (Dingin), karena ketika Sunan Kalijaga melewati dukuh tersebut hawa di sekitar Padukuhan Padem terasa adem atau dingin.',
+                    textAlign: TextAlign.center,
                   ),
 
                   const SizedBox(height: 32),
@@ -128,11 +114,13 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                   Text(
                     'BAGAN DUSUN',
                     style: CustomTexts.HEADING_3(),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Struktur Pemerintahan Dusun Padem',
                     style: CustomTexts.HEADING_4(),
+                    textAlign: TextAlign.center,
                   ),
 
                   // Structure Diagram
@@ -194,6 +182,7 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                   Text(
                     'PETA LOKASI DUSUN',
                     style: CustomTexts.HEADING_3(),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Container(
@@ -202,6 +191,8 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                     child: const Center(
                         child: HtmlElementView(viewType: 'google-maps')),
                   ),
+
+                  // Asal Usul Section
 
                   const SizedBox(height: 32),
                 ],

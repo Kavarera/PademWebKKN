@@ -37,7 +37,7 @@ class DetailBeritaView extends GetView<DetailBeritaController> {
                   constraints: BoxConstraints(
                     maxWidth: 800,
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

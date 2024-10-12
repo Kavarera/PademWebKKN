@@ -21,11 +21,32 @@ class HomeAdminView extends GetView<HomeAdminController> {
         children: [
           drawerAdmin(-1),
           Expanded(
-            child: Center(
-              child: Text(
-                'Selamat Datang',
-                style: CustomTexts.HEADING_1(),
-              ),
+            child: Stack(
+              children: [
+                Image.asset(
+                  'assets/images/background.JPG',
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Color.fromARGB(120, 255, 255, 255),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/logo_padem.png', width: 360),
+                        Text(
+                          'Selamat Datang',
+                          style: CustomTexts.HEADING_1(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           )
         ],

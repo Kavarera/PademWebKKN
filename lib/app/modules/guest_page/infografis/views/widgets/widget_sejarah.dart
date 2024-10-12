@@ -5,7 +5,7 @@ import '../../../../../data/infografis_data.dart';
 
 Widget SejarahWidgetState() {
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
       color: Colors.white,
@@ -27,7 +27,11 @@ Widget SejarahWidgetState() {
             textAlign: TextAlign.justify,
           ),
         ),
-        Text(SEJARAH_PADEM),
+        const SizedBox(height: 16),
+        Text(
+          SEJARAH_PADEM,
+          textAlign: TextAlign.center,
+        ),
       ],
     ),
   );

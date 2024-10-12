@@ -22,7 +22,6 @@ class ListBeritaController extends GetxController {
   }
 
   var newsList = <NewsModelFirestore>[].obs;
-  List<NewsModelFirestore> _news = [];
   getBeritaPage() {
     return DetailBeritaView(
       BERITAID: currentBeritaId.value,
@@ -37,6 +36,8 @@ class ListBeritaController extends GetxController {
           await FirebaseFirestore.instance.collection('news').get();
       newsList.value = querySnapshot.docs
           .map((doc) => NewsModelFirestore.fromDocument(doc))
+          .toList()
+          .reversed
           .toList();
       newsList.forEach((element) {
         print("After fetch = ${element.imageUrl}");

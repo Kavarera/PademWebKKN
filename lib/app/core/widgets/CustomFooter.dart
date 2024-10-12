@@ -4,7 +4,7 @@ import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final List<Widget> villageProfile = [
-  FlutterLogo(size: 64),
+  Image.asset('assets/images/logo_padem.png', width: 256),
   const SizedBox(height: 8),
   Text(
     "Dusun Padem",

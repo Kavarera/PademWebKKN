@@ -69,6 +69,23 @@ class CustomTexts {
     );
   }
 
+  static TextStyle HEADING_5({color = Colors.black, shadow = false}) {
+    return TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: color,
+      shadows: shadow
+          ? <Shadow>[
+              Shadow(
+                offset: Offset(3, 3),
+                blurRadius: 2,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+            ]
+          : null,
+    );
+  }
+
   static TextStyle CARD({color = Colors.black}) {
     return TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: color);
   }

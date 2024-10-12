@@ -53,24 +53,36 @@ class ListBeritaView extends GetView<ListBeritaController> {
                   ),
                   const SizedBox(height: 16),
                   Obx(() {
-                    if (controller.newsList.isEmpty) {
+                    if (!controller.isFetching.value &&
+                        controller.newsList.isEmpty) {
                       return Center(
                         child: Text(
                           'Tidak ada berita',
                           style: CustomTexts.HEADING_2(),
                         ),
                       );
+                    } else if (controller.isFetching.value) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        width: double.infinity,
+                        child: Wrap(
+                            spacing: 16,
+                            runSpacing: 16,
+                            children:
+                                controller.newsList.asMap().values.map((item) {
+                              return Column(children: [
+                                const SizedBox(height: 16),
+                                newsItem(item, width),
+                              ]);
+                            }).toList()),
+                      );
                     }
-                    return Wrap(
-                        spacing: 16,
-                        runSpacing: 16,
-                        children:
-                            controller.newsList.asMap().values.map((item) {
-                          return Column(children: [
-                            const SizedBox(height: 16),
-                            newsItem(item, width),
-                          ]);
-                        }).toList());
                   })
                 ],
               ),
@@ -88,6 +100,7 @@ class ListBeritaView extends GetView<ListBeritaController> {
       onTap: () {
         try {
           Get.find<LandingPageController>().setNews(true, item.id);
+          Get.find<LandingPageController>().changeState(6);
           print(Get.find<LandingPageController>().STATE.value);
         } catch (e) {
           print("error : $e");
@@ -96,7 +109,11 @@ class ListBeritaView extends GetView<ListBeritaController> {
         // Get.toNamed('/detail-berita/${item.id}');
       },
       child: Container(
-        width: width < 600 ? width : (width - 48) / 2,
+        width: width < 600
+            ? width
+            : width < 1200
+                ? (width - 48) / 2
+                : (width - 64) / 3,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(5),
@@ -154,11 +171,14 @@ class ListBeritaView extends GetView<ListBeritaController> {
             const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                item.description,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 14),
+              child: SizedBox(
+                height: 42,
+                child: Text(
+                  item.description,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 14),
+                ),
               ),
             ),
             const SizedBox(height: 16),
