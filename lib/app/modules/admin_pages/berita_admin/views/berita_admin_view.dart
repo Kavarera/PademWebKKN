@@ -11,7 +11,6 @@ import '../../../../core/colors/Colors_Value.dart';
 import '../../../../core/styles/Text_Styles.dart';
 import '../../../../core/views/error_screen.dart';
 import '../../../../core/widgets/CustomTextField.dart';
-import '../../../../models/NewsModel.dart';
 import '../../../../models/news_model.dart';
 import '../controllers/berita_admin_controller.dart';
 
@@ -90,7 +89,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                                         .map((item) {
                                       return Column(children: [
                                         const SizedBox(height: 16),
-                                        newsItem(item, width),
+                                        newsItem(item, width, context),
                                       ]);
                                     }).toList());
                       },
@@ -105,7 +104,7 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
     );
   }
 
-  Widget newsItem(NewsModelFirestore item, double width) {
+  Widget newsItem(NewsModelFirestore item, double width, BuildContext context) {
     print("newsItem = ${item.imageUrl.toString()}");
     return InkWell(
       onTap: () {
@@ -183,7 +182,38 @@ class BeritaAdminView extends GetView<BeritaAdminController> {
                 children: [
                   Expanded(
                     child: dangerButton('Hapus', () {
-                      controller.deleteNews(item.id);
+                      // Show confirmation dialog before deleting
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Konfirmasi'),
+                            content: Text(
+                                'Apakah Anda yakin ingin menghapus berita ini?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog
+                                },
+                                child: Text('Batal'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Perform the delete operation
+                                  controller.deleteNews(item.id);
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog after delete
+                                },
+                                child: Text(
+                                  'Hapus',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     }),
                   ),
                   const SizedBox(width: 8),

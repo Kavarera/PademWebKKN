@@ -14,26 +14,30 @@ class BerandaView extends GetView<BerandaController> {
   @override
   Widget build(BuildContext context) {
     final List<String> images = [
-      'assets/images/background ori.jpg',
-      'assets/images/bg techno 2.jpeg',
-      'assets/images/bg techno.jpeg'
+      'assets/images/background.JPG',
+      'assets/images/gamelan.JPG',
+      'assets/images/pasar_legi.JPG'
     ];
-    final List<Map<String, String>> cardMenu = [
+    final List<Map<String, dynamic>> cardMenu = [
       {
-        'pic': 'assets/images/background ori.jpg',
+        'pic': 'assets/images/gapura.JPG',
         'menu': 'Profil Dusun',
+        'state': 1,
       },
       {
-        'pic': 'assets/images/bg techno 2.jpeg',
+        'pic': 'assets/images/banner_balai.JPG',
         'menu': 'Infografis',
+        'state': 2,
       },
       {
-        'pic': 'assets/images/bg techno.jpeg',
+        'pic': 'assets/images/gamelan.JPG',
         'menu': 'Berita',
+        'state': 3,
       },
       {
-        'pic': 'assets/images/background ori.jpg',
+        'pic': 'assets/images/pasar_legi.JPG',
         'menu': 'Produk dan Jasa',
+        'state': 4
       },
     ];
 
@@ -155,11 +159,11 @@ class BerandaView extends GetView<BerandaController> {
           const SizedBox(height: 16),
           CircleAvatar(
             radius: 64,
-            backgroundImage: AssetImage('assets/images/background ori.jpg'),
+            backgroundImage: AssetImage('assets/images/background.JPG'),
           ),
           const SizedBox(height: 16),
           Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            "Assalamualaikum Warahmatullahi Wabarakatuh,\nSalam sejahtera untuk kita semuanya.\n\n\nPuji dan syukur ke hadirat Tuhan Yang Maha Esa atas Rahmat dan Karunianya, kita masih di berikan kesehatan sehingga masih bisa bersama sama, bahu membahu, dan bergotong royong membangun Padukan Padem kita tercinta. Selanjutnya ijinkan saya mengucapkan terima kasih kepada seluruh maayarakat Padukuhan Padem, atas Amanah yang di berikan ini, selanjutnya saya mengajak seluruh warga Maayarakat untuk bersama sama bahu membahu, bergotong royong dalam melaksanakan pembangunan Padukuhan Padem saat ini dan masa yang akan datang, agar apa yang menjadi harapan seluruh warga masyarakat akan senantiasa terwujud, yakni menjadikan Padukuhan Padem yang produktif, agamis, demokratis, mandiri, dan sejahtera.\n\n\nTentu semua ini tidaklah mudah, namun dengan semangat kebersamaan kita, dengan Gotong Royong yang menjadi budaya kita, serta dengan mendapatkan dukungan dari pemerintah, serta atas ridho Alloh SWT, semua ini akan segera terwujud. Untuk itu, saya mohon masukan, saran dari bapak/ibu sekalian agar dalam menentukan kebijakan strategis dapat kita laksanakan dengan sebaik-baiknya.\n\nDemikianlah kata sambutan saya sebagi Dukuh Padem, Kalrahan Girikarto, Kapanewon Panggang, apabila ada hal yang kurang berkenan, mohon maaf yang sebesar-besarnya.\n\nWasalamualaikum Warahmatullahi Wabarakatuh.",
             textAlign: TextAlign.center,
           ),
         ],
@@ -180,17 +184,17 @@ class BerandaView extends GetView<BerandaController> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "Assalamualaikum Warahmatullahi Wabarakatuh,\nSalam sejahtera untuk kita semuanya.\n\n\nPuji dan syukur ke hadirat Tuhan Yang Maha Esa atas Rahmat dan Karunianya, kita masih di berikan kesehatan sehingga masih bisa bersama sama, bahu membahu, dan bergotong royong membangun Padukan Padem kita tercinta. Selanjutnya ijinkan saya mengucapkan terima kasih kepada seluruh maayarakat Padukuhan Padem, atas Amanah yang di berikan ini, selanjutnya saya mengajak seluruh warga Maayarakat untuk bersama sama bahu membahu, bergotong royong dalam melaksanakan pembangunan Padukuhan Padem saat ini dan masa yang akan datang, agar apa yang menjadi harapan seluruh warga masyarakat akan senantiasa terwujud, yakni menjadikan Padukuhan Padem yang produktif, agamis, demokratis, mandiri, dan sejahtera.\n\n\nTentu semua ini tidaklah mudah, namun dengan semangat kebersamaan kita, dengan Gotong Royong yang menjadi budaya kita, serta dengan mendapatkan dukungan dari pemerintah, serta atas ridho Alloh SWT, semua ini akan segera terwujud. Untuk itu, saya mohon masukan, saran dari bapak/ibu sekalian agar dalam menentukan kebijakan strategis dapat kita laksanakan dengan sebaik-baiknya.\n\nDemikianlah kata sambutan saya sebagi Dukuh Padem, Kalrahan Girikarto, Kapanewon Panggang, apabila ada hal yang kurang berkenan, mohon maaf yang sebesar-besarnya.\n\nWasalamualaikum Warahmatullahi Wabarakatuh.",
                   textAlign: TextAlign.center,
-                )
+                ),
               ],
             ),
           ),
           Expanded(
             flex: 2,
             child: CircleAvatar(
-              radius: 56,
-              backgroundImage: AssetImage('assets/images/background ori.jpg'),
+              radius: 128,
+              backgroundImage: AssetImage('assets/images/background.JPG'),
             ),
           )
         ],

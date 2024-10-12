@@ -30,7 +30,10 @@ class BeritaAdminController extends GetxController {
           await FirebaseFirestore.instance.collection('news').get();
       newsList.value = querySnapshot.docs
           .map((doc) => NewsModelFirestore.fromDocument(doc))
+          .toList()
+          .reversed
           .toList();
+
       newsList.forEach((element) {
         print("After fetch = ${element.imageUrl}");
       });

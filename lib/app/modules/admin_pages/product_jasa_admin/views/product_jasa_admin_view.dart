@@ -85,7 +85,8 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
                                       children: controller.productList
                                           .asMap()
                                           .values
-                                          .map((e) => productItem(e, width))
+                                          .map((e) =>
+                                              productItem(e, width, context))
                                           .toList(),
                                     );
                         },
@@ -99,7 +100,8 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
         ));
   }
 
-  Widget productItem(ProductJasaFirestoreModel item, double width) {
+  Widget productItem(
+      ProductJasaFirestoreModel item, double width, BuildContext context) {
     print("product = ${item.title}");
     return InkWell(
       onTap: () {
@@ -153,14 +155,19 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
                 NumberFormat.currency(
                         locale: 'id', symbol: 'Rp ', decimalDigits: 0)
                     .format(item.harga),
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+                style: CustomTexts.HEADING_5(color: CustomColors.FOREST_GREEN),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Text(
-                item.contact,
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+              child: Row(
+                children: [
+                  Icon(Symbols.call, size: 24),
+                  const SizedBox(width: 8),
+                  Text(
+                    item.contact,
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 8),
@@ -175,11 +182,52 @@ class ProductJasaAdminView extends GetView<ProductJasaAdminController> {
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: SizedBox(
-                width: double.infinity,
-                child: dangerButton('Hapus', () {
-                  controller.deleteProduct(item.id);
-                }),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: dangerButton('Hapus', () {
+                      // Show confirmation dialog before deleting
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Konfirmasi'),
+                            content: Text(
+                                'Apakah Anda yakin ingin menghapus produk/jasa ini?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog
+                                },
+                                child: Text('Batal'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Perform the delete operation
+                                  controller.deleteProduct(item.id);
+                                  Navigator.of(context)
+                                      .pop(); // Close the dialog after delete
+                                },
+                                child: Text(
+                                  'Hapus',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: primaryButton('Edit', () {
+                      Get.offAndToNamed(Routes.BUAT_PRODUCT_DAN_JASA,
+                          arguments: item);
+                    }),
+                  ),
+                ],
               ),
             )
           ],

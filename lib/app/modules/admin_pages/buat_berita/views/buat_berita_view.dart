@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +8,6 @@ import 'package:padem_arsip_digital/app/core/views/error_screen.dart';
 import 'package:padem_arsip_digital/app/models/news_model.dart';
 
 import '../../../../core/styles/Text_Styles.dart';
-import '../../../../core/widgets/CustomAppBar.dart';
 import '../../../../core/widgets/CustomButtons.dart';
 import '../../../../core/widgets/CustomDrawerAdmin.dart';
 import '../../../../core/widgets/CustomTextField.dart';

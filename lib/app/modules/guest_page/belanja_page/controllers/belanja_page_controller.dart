@@ -6,6 +6,7 @@ import '../../../../models/product_jasa_model.dart';
 
 class BelanjaPageController extends GetxController {
   var isFetching = false.obs;
+  var STATE = "Homestay".obs;
   @override
   void onInit() {
     super.onInit();
@@ -23,6 +24,24 @@ class BelanjaPageController extends GetxController {
 
   var visibleProductList = <ProductJasaFirestoreModel>[].obs;
   List<ProductJasaFirestoreModel> _productList = [];
+  List<Map<String, dynamic>> menuList = [
+    {
+      "title": "Homestay",
+      "enum": ProductJasaEnum.HOMESTAY,
+    },
+    {
+      "title": "Kuliner",
+      "enum": ProductJasaEnum.CULINARY,
+    },
+    {
+      "title": "Tour Guide",
+      "enum": ProductJasaEnum.TOURGUIDE,
+    },
+    {
+      "title": "Toko",
+      "enum": ProductJasaEnum.RETAILSTORE,
+    },
+  ];
   Future<void> fetchAllProduct() async {
     try {
       isFetching.value = true;
@@ -41,6 +60,10 @@ class BelanjaPageController extends GetxController {
       print("Error fetching store: $e");
       isFetching.value = false;
     }
+  }
+
+  void changeState(String state) {
+    STATE.value = state;
   }
 
   void filterProduct(ProductJasaEnum category) {

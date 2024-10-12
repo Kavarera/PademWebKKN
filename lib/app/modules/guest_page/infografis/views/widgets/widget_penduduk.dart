@@ -7,7 +7,7 @@ import '../../../../../data/infografis_data.dart';
 
 Widget PendudukWidgetState(BuildContext context) {
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
       color: Colors.white,
@@ -31,175 +31,113 @@ Widget PendudukWidgetState(BuildContext context) {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 16,
         ),
         if (MediaQuery.of(context).size.width < 600)
           Column(
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(4, 1),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/population.png',
-                      width: 50,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total Jiwa',
-                          style: CustomTexts.HEADING_3(),
-                        ),
-                        Text('677'),
-                      ],
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/population.png',
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total Jiwa',
+                        style: CustomTexts.HEADING_4(),
+                      ),
+                      Text('677'),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/user.png',
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Kepala Keluarga',
+                        style: CustomTexts.HEADING_4(),
+                      ),
+                      Text('196'),
+                    ],
+                  ),
+                ],
               ),
               SizedBox(
-                height: 20,
+                height: 16,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(4, 1),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/user.png',
-                      width: 50,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Kepala Keluarga',
-                          style: CustomTexts.HEADING_3(),
-                        ),
-                        Text('196'),
-                      ],
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/female.png',
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Perempuan',
+                        style: CustomTexts.HEADING_4(),
+                      ),
+                      Text('353'),
+                    ],
+                  ),
+                ],
               ),
               SizedBox(
-                height: 20,
+                height: 16,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(4, 1),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/female.png',
-                      width: 50,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Perempuan',
-                          style: CustomTexts.HEADING_3(),
-                        ),
-                        Text('353'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(4, 1),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/male.png',
-                      width: 50,
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Laki-Laki',
-                          style: CustomTexts.HEADING_3(),
-                        ),
-                        Text('324'),
-                      ],
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/male.png',
+                    width: 50,
+                    fit: BoxFit.contain,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Laki-Laki',
+                        style: CustomTexts.HEADING_4(),
+                      ),
+                      Text('324'),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -209,117 +147,124 @@ Widget PendudukWidgetState(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/population.png',
-                        width: 50,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Total Jiwa',
-                            style: CustomTexts.HEADING_3(),
-                          ),
-                          Text('677'),
-                        ],
-                      ),
-                    ],
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/population.png',
+                          width: 50,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Total Jiwa',
+                              style: CustomTexts.HEADING_3(),
+                            ),
+                            Text('677'),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/user.png',
-                        width: 50,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Kepala Keluarga',
-                            style: CustomTexts.HEADING_3(),
-                          ),
-                          Text('196'),
-                        ],
-                      ),
-                    ],
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/user.png',
+                          width: 50,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Kepala Keluarga',
+                              style: CustomTexts.HEADING_3(),
+                            ),
+                            Text('196'),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
+              const SizedBox(height: 16),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/female.png',
-                        width: 50,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Perempuan',
-                            style: CustomTexts.HEADING_3(),
-                          ),
-                          Text('353'),
-                        ],
-                      ),
-                    ],
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/female.png',
+                          width: 50,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Perempuan',
+                              style: CustomTexts.HEADING_3(),
+                            ),
+                            Text('353'),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/male.png',
-                        width: 50,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Laki-Laki',
-                            style: CustomTexts.HEADING_3(),
-                          ),
-                          Text('324'),
-                        ],
-                      ),
-                    ],
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          'assets/images/male.png',
+                          width: 50,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Laki-Laki',
+                              style: CustomTexts.HEADING_3(),
+                            ),
+                            Text('324'),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               )
             ],
           ),
         //CHART SECTION
-        SizedBox(
-          height: 50,
-        ),
+        SizedBox(height: 32),
         AspectRatio(
           aspectRatio: MediaQuery.of(context).size.width < 1000 ? 1.5 : 4.5,
           child: AspectRatio(
@@ -373,153 +318,178 @@ Widget PendudukWidgetState(BuildContext context) {
             ),
           ),
         ),
+        const SizedBox(height: 32),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Row(
-              children: [
-                Container(
-                  color: Colors.redAccent,
-                  width: 30,
-                  height: 30,
-                ),
-                Text(
-                  'TK',
-                  style: CustomTexts.HEADING_4(),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  color: Colors.purple,
-                  width: 30,
-                  height: 30,
-                ),
-                Text(
-                  'SD',
-                  style: CustomTexts.HEADING_4(),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  color: Colors.blue,
-                  width: 30,
-                  height: 30,
-                ),
-                Text(
-                  'SMP',
-                  style: CustomTexts.HEADING_4(),
-                )
-              ],
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
-              children: [
-                Container(
-                  color: Colors.green,
-                  width: 30,
-                  height: 30,
-                ),
-                Text(
-                  'SMA',
-                  style: CustomTexts.HEADING_4(),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  color: CustomColors.LIGHT_OCEAN_BLUE,
-                  width: 30,
-                  height: 30,
-                ),
-                Text(
-                  'S1',
-                  style: CustomTexts.HEADING_4(),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  color: Colors.orange,
-                  width: 30,
-                  height: 30,
-                ),
-                Text(
-                  'S2',
-                  style: CustomTexts.HEADING_4(),
-                )
-              ],
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              color: CustomColors.BRONZE,
-              width: 30,
-              height: 30,
-            ),
-            Text(
-              'Tidak Lulus Sekolah',
-              style: CustomTexts.HEADING_4(),
-            )
-          ],
-        ),
-        Center(
-          child: Row(
-            children: [
-              Container(
-                color: CustomColors.DARK_BROWN,
-                width: 30,
-                height: 30,
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: Colors.redAccent,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'TK',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
               ),
-              Text(
-                'Tidak Sekolah',
-                style: CustomTexts.HEADING_4(),
-              )
-            ],
-          ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: Colors.purple,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'SD',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: Colors.blue,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'SMP',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
-        SizedBox(
-          height: 10,
+        const SizedBox(height: 8),
+        Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: Colors.green,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'SMA',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: CustomColors.LIGHT_OCEAN_BLUE,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'S1',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: Colors.orange,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'S2',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    color: CustomColors.BRONZE,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: Text(
+                      'Tidak Lulus Sekolah',
+                      style: CustomTexts.HEADING_4(),
+                      softWrap: true,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Row(
+                children: [
+                  Container(
+                    color: CustomColors.DARK_BROWN,
+                    width: 30,
+                    height: 30,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    'Tidak Sekolah',
+                    style: CustomTexts.HEADING_4(),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 16),
         Text('Pekerjaan', style: CustomTexts.HEADING_3()),
         SizedBox(
           height: 5,
         ),
-        Container(
-          height: 500,
-          child: ListView.builder(
-            itemCount: DATA_PEKERJAAN_PADEM.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      DATA_PEKERJAAN_PADEM[index]['name'],
-                      style: CustomTexts.HEADING_4(),
-                    ),
-                    Text(
-                      DATA_PEKERJAAN_PADEM[index]['jumlah'].toString(),
-                      style: CustomTexts.HEADING_4(),
-                    ),
-                  ],
+        ...DATA_PEKERJAAN_PADEM.asMap().values.map((pekerjaan) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  pekerjaan['name'],
+                  style: CustomTexts.HEADING_4(),
                 ),
-              );
-            },
-          ),
-        ),
+                Text(
+                  pekerjaan['jumlah'].toString(),
+                  style: CustomTexts.HEADING_4(),
+                ),
+              ],
+            ),
+          );
+        })
       ],
     ),
   );
