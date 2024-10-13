@@ -10,121 +10,129 @@ class InfografisView extends GetView<InfografisController> {
   const InfografisView({super.key});
   @override
   Widget build(BuildContext context) {
+    Get.find<InfografisController>().WIDTH.value =
+        MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Center(
-                child: Text(
-                  "Infografis Dusun Padem",
-                  style: CustomTexts.HEADING_2(),
-                  textAlign: TextAlign.center,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    "Infografis Dusun Padem",
+                    style: CustomTexts.HEADING_2(),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  if (constraints.maxWidth < 800) {
-                    return DropdownButtonHideUnderline(
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: CustomColors.LIGHT_OCEAN_BLUE,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: DropdownButton<String>(
-                          iconEnabledColor: Colors.white,
-                          items: <String>[
-                            'Sejarah',
-                            'Penduduk',
-                            'Destinasi Wisata'
-                          ].map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(
-                                value,
+                const SizedBox(height: 16),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (constraints.maxWidth < 800) {
+                      return DropdownButtonHideUnderline(
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: CustomColors.LIGHT_OCEAN_BLUE,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: DropdownButton<String>(
+                            iconEnabledColor: Colors.white,
+                            items: <String>[
+                              'Sejarah',
+                              'Penduduk',
+                              'Destinasi Wisata'
+                            ].map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              controller.changeState(value!);
+                            },
+                            hint: Obx(
+                              () => Text(
+                                controller.STATE.value,
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
-                            );
-                          }).toList(),
-                          onChanged: (String? value) {
-                            controller.changeState(value!);
-                          },
-                          hint: Obx(
-                            () => Text(
-                              controller.STATE.value,
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
                             ),
+                            dropdownColor: CustomColors.LIGHT_OCEAN_BLUE,
                           ),
-                          dropdownColor: CustomColors.LIGHT_OCEAN_BLUE,
                         ),
-                      ),
-                    );
-                  } else {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: CustomColors.LIGHT_OCEAN_BLUE,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              controller.changeState("Sejarah");
-                            },
-                            child: Text(
-                              "Sejarah",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                      );
+                    } else {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: CustomColors.LIGHT_OCEAN_BLUE,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                controller.changeState("Sejarah");
+                              },
+                              child: Text(
+                                "Sejarah",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              controller.changeState("Penduduk");
-                            },
-                            child: Text(
-                              "Penduduk",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                            TextButton(
+                              onPressed: () {
+                                controller.changeState("Penduduk");
+                              },
+                              child: Text(
+                                "Penduduk",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              controller.changeState("Destinasi Wisata");
-                            },
-                            child: Text(
-                              "Destinasi Wisata",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                            TextButton(
+                              onPressed: () {
+                                controller.changeState("Destinasi Wisata");
+                              },
+                              child: Text(
+                                "Destinasi Wisata",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                },
-              ),
-              SizedBox(height: 16),
-              Obx(() => controller.getCurrentState(context)),
-            ],
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
-        ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Obx(() => controller.getCurrentState(context)),
+            ),
+          ),
+        ],
       ),
     );
   }
