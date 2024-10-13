@@ -133,7 +133,7 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                           children: const [
                             CircleAvatar(
                               radius: 40,
-                              backgroundImage: NetworkImage(
+                              backgroundImage: AssetImage(
                                   'assets/images/pak dukuh.jpg'), // Gambar Kepala Dusun dari URL
                             ),
                             SizedBox(height: 8),
@@ -145,7 +145,7 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                           children: const [
                             CircleAvatar(
                               radius: 40,
-                              backgroundImage: NetworkImage(
+                              backgroundImage: AssetImage(
                                   'assets/images/pak rw.jpg'), // Gambar Kepala Dusun dari URL
                             ),
                             SizedBox(height: 8),
