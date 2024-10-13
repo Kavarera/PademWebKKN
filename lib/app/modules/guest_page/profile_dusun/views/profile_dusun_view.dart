@@ -134,10 +134,10 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                             CircleAvatar(
                               radius: 40,
                               backgroundImage: NetworkImage(
-                                  'https://img.icons8.com/color/48/user-male-circle--v1.png'), // Gambar Kepala Dusun dari URL
+                                  'assets/images/pak dukuh.jpg'), // Gambar Kepala Dusun dari URL
                             ),
                             SizedBox(height: 8),
-                            Text('Pak Dukuh XYZ'),
+                            Text('Pak Dukuh Sugiato'),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -146,10 +146,10 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                             CircleAvatar(
                               radius: 40,
                               backgroundImage: NetworkImage(
-                                  'https://img.icons8.com/color/48/user-male-circle--v1.png'), // Gambar Kepala Dusun dari URL
+                                  'assets/images/pak rw.jpg'), // Gambar Kepala Dusun dari URL
                             ),
                             SizedBox(height: 8),
-                            Text('Pak RW XYZ'),
+                            Text('Pak RW Sukidi'),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -159,16 +159,22 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                           runSpacing: 20.0, // Jarak vertikal antar item
                           alignment: WrapAlignment.center,
                           children: List.generate(7, (index) {
-                            return Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 35,
-                                  backgroundImage: NetworkImage(
-                                      'https://img.icons8.com/color/48/user-male-circle--v1.png'), // Gambar RT dari URL
-                                ),
-                                const SizedBox(height: 8),
-                                Text('Pak RT ${index + 1}'),
-                              ],
+                            return Container(
+                              width: 80,
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 35,
+                                    backgroundImage: AssetImage(
+                                        'assets/images/pak rt ${index + 1}.jpg'), // Gambar RT dari URL
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'Pak RT ${index + 1} ${Get.find<ProfileDusunController>().namaRT[index]}',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
                             );
                           }),
                         ),

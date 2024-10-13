@@ -8,6 +8,7 @@ import '../views/widgets/widget_sejarah.dart';
 
 class InfografisController extends GetxController {
   var STATE = 'Sejarah'.obs;
+  var WIDTH = 0.0.obs;
   @override
   void onInit() {
     super.onInit();

@@ -159,7 +159,7 @@ class BerandaView extends GetView<BerandaController> {
           const SizedBox(height: 16),
           CircleAvatar(
             radius: 64,
-            backgroundImage: AssetImage('assets/images/background.JPG'),
+            backgroundImage: AssetImage('assets/images/pak dukuh.jpg'),
           ),
           const SizedBox(height: 16),
           Text(
@@ -194,7 +194,7 @@ class BerandaView extends GetView<BerandaController> {
             flex: 2,
             child: CircleAvatar(
               radius: 128,
-              backgroundImage: AssetImage('assets/images/background.JPG'),
+              backgroundImage: AssetImage('assets/images/pak dukuh.jpg'),
             ),
           )
         ],

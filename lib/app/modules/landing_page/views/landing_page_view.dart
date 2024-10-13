@@ -17,7 +17,7 @@ class LandingPageView extends GetView<LandingPageController> {
             if (constraints.maxWidth < 1100) {
               return AppBar(
                 title: Text('Padem Pedia'),
-                leading: FlutterLogo(),
+                leading: Image.asset('assets/images/logo_padem_lq.png'),
                 backgroundColor: CustomColors.OLIVE_GREEN,
                 foregroundColor: Colors.white,
                 elevation: 4.0,

@@ -2,6 +2,15 @@ import 'package:get/get.dart';
 
 class ProfileDusunController extends GetxController {
   final count = 0.obs;
+  final List<String> namaRT = [
+    "Mugiyono",
+    "Sajiyo",
+    "Wasono",
+    "Mudiyanto",
+    "Harjono",
+    "Heriyanto",
+    "Sudiasri",
+  ];
   @override
   void onInit() {
     super.onInit();
