@@ -9,5 +9,5 @@ List<String> PADEM_MISI = [
   "Menumbuh kembangkan kelompok kelompok ekonomi kreatif, umkm, home industri dalam pengolahan bahan baku lokal agar berdaya saing",
   "Meningkatkan peran dan partisipasi aktif Masyarakat dalam kegiatan gotong royong, menjaga kebersihan, keamanan lingkungan padukuhan",
   "Mewujudkan pemerintahan yang bersih, transparan dan akuntabel",
-  "Melestarikan budaya Visi Misi dukuh Padem"
+  "Melestarikan budaya"
 ];
