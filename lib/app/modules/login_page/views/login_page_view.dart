@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/colors/Colors_Value.dart';
-import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
 import '../controllers/login_page_controller.dart';
 
 class LoginPageView extends GetView<LoginPageController> {
@@ -39,8 +38,8 @@ class LoginPageView extends GetView<LoginPageController> {
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(
-                          'assets/images/background.JPG'), // Path to your image
+                      image: NetworkImage(
+                          'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fbackground.JPG?alt=media&token=7fedee39-66ad-4999-9542-38b97554b713'), // Path to your image
                       fit: BoxFit.cover,
                     ),
                   ),

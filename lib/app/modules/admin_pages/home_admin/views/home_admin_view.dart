@@ -23,8 +23,8 @@ class HomeAdminView extends GetView<HomeAdminController> {
           Expanded(
             child: Stack(
               children: [
-                Image.asset(
-                  'assets/images/background.JPG',
+                Image.network(
+                  'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fbackground.JPG?alt=media&token=7fedee39-66ad-4999-9542-38b97554b713',
                   width: double.infinity,
                   height: double.infinity,
                   fit: BoxFit.cover,
@@ -37,7 +37,9 @@ class HomeAdminView extends GetView<HomeAdminController> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('assets/images/logo_padem.png', width: 360),
+                        Image.network(
+                            'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Flogo_padem.png?alt=media&token=cc72d613-c78a-442b-b82a-9c9b92490a72',
+                            width: 360),
                         Text(
                           'Selamat Datang',
                           style: CustomTexts.HEADING_1(),

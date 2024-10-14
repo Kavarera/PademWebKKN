@@ -1,15 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:padem_arsip_digital/app/core/widgets/CustomFooter.dart';
-import 'package:padem_arsip_digital/app/core/widgets/ImageCarousel.dart';
-import 'package:padem_arsip_digital/app/models/NewsModel.dart';
 import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
 
 import '../controllers/detail_berita_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DetailBeritaView extends GetView<DetailBeritaController> {
   final String BERITAID;
@@ -19,7 +15,6 @@ class DetailBeritaView extends GetView<DetailBeritaController> {
     // int id = int.parse(Get.parameters['id']!);
     double width = MediaQuery.of(context).size.width;
 
-    CarouselSliderController carouselController = CarouselSliderController();
     print('BERITAID = $BERITAID');
     controller.getNews(BERITAID);
     return Scaffold(

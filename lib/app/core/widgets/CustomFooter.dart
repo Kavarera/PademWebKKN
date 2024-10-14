@@ -4,7 +4,9 @@ import 'package:padem_arsip_digital/app/core/styles/Text_Styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final List<Widget> villageProfile = [
-  Image.asset('assets/images/logo_padem.png', width: 256),
+  Image.network(
+      'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Flogo_padem.png?alt=media&token=cc72d613-c78a-442b-b82a-9c9b92490a72',
+      width: 256),
   const SizedBox(height: 8),
   Text(
     "Dusun Padem",

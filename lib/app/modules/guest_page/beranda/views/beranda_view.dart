@@ -14,28 +14,32 @@ class BerandaView extends GetView<BerandaController> {
   @override
   Widget build(BuildContext context) {
     final List<String> images = [
-      'assets/images/background.JPG',
-      'assets/images/gamelan.JPG',
-      'assets/images/pasar_legi.JPG'
+      'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fbackground.JPG?alt=media&token=7fedee39-66ad-4999-9542-38b97554b713',
+      'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fgamelan.JPG?alt=media&token=01388b56-574e-4e72-9763-27677fb5b740',
+      'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fpasar_legi.JPG?alt=media&token=ba2eb869-a654-4503-92a6-2cd0ad6e406e'
     ];
     final List<Map<String, dynamic>> cardMenu = [
       {
-        'pic': 'assets/images/gapura.JPG',
+        'pic':
+            'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fgapura.JPG?alt=media&token=3fbfa132-396a-4f85-a57f-262c565a51d5',
         'menu': 'Profil Dusun',
         'state': 1,
       },
       {
-        'pic': 'assets/images/banner_balai.JPG',
+        'pic':
+            'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fbanner_balai.JPG?alt=media&token=4292ba81-5dae-45bc-bdca-e5100479da2e',
         'menu': 'Infografis',
         'state': 2,
       },
       {
-        'pic': 'assets/images/gamelan.JPG',
+        'pic':
+            'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fgamelan.JPG?alt=media&token=01388b56-574e-4e72-9763-27677fb5b740',
         'menu': 'Berita',
         'state': 3,
       },
       {
-        'pic': 'assets/images/pasar_legi.JPG',
+        'pic':
+            'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Fpasar_legi.JPG?alt=media&token=ba2eb869-a654-4503-92a6-2cd0ad6e406e',
         'menu': 'Produk dan Jasa',
         'state': 4
       },
@@ -51,7 +55,7 @@ class BerandaView extends GetView<BerandaController> {
             height: height - 56,
             child: Stack(
               children: <Widget>[
-                Image.asset(
+                Image.network(
                   item,
                   fit: BoxFit.cover,
                   height: height - 56,
