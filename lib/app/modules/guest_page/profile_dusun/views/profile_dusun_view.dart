@@ -30,6 +30,16 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
       (int viewId) => iFrameElement,
     );
 
+    final IFrameElement iFrameElementVideo = IFrameElement()
+      ..width = '560'
+      ..height = '315'
+      ..src = 'https://www.youtube.com/embed/gFCf8_IMvCw?si=6GjBjbCAjsplR4i2'
+      ..style.border = 'none'
+      ..allowFullscreen = true;
+
+    ui.platformViewRegistry
+        .registerViewFactory('yt-vids', (int viewId) => iFrameElementVideo);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -98,14 +108,16 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
 
                   const SizedBox(height: 32),
                   Text(
-                    'ASAL USUL',
+                    'VIDEO PROFIL DUSUN',
                     style: CustomTexts.HEADING_3(),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    'Tidak diketahui secara pasti tahun berdirinya Padukuhan Padem. Menurut sesepuh setempat, Padukuhan Padem didirikan oleh seorang bernama Mbah Tijoyo. Mbah Tijoyo merupakan pendatang yang berasal dari Wonosari, Gunung Kidul. Beliau dan beberapa kawannya sepakat untuk mendirikan Padukuhan Padem bersama. Nama Padem sendiri konon diberikan oleh Sunan Kalijaga yang kebetulan melewati padukuhan ini. Nama “Padem” berasal dari kata “Adem” (Dingin), karena ketika Sunan Kalijaga melewati dukuh tersebut hawa di sekitar Padukuhan Padem terasa adem atau dingin.',
-                    textAlign: TextAlign.center,
+                  //di sini videonya
+                  Container(
+                    height: 315,
+                    width: 560,
+                    child: const HtmlElementView(viewType: 'yt-vids'),
                   ),
 
                   const SizedBox(height: 32),
