@@ -3,15 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "8213c746c58c544f446c3d1e4e740127",
-"assets/AssetManifest.bin.json": "30b9c100ddd4ad49df2b0f0524ad836f",
-"assets/AssetManifest.json": "2975dcb53c1573d3c93f4fb1f2ac9889",
-"assets/assets/background.png": "8df97517b6de213878a6148766412948",
-"assets/assets/images/background%2520ori.jpg": "795f3f7f97d86a751b1336e1a4ca1842",
-"assets/assets/images/background.JPG": "e2e452a5fbfecedca5aaecd3000a66b2",
+const RESOURCES = {"assets/AssetManifest.bin": "9ff6ea5f259f3e7facfef9fe1711f0e2",
+"assets/AssetManifest.bin.json": "6d88d92bd9a9bed10b205bf4e1c8c7d3",
+"assets/AssetManifest.json": "0723ce062f71c90fdc064c4a0241100a",
+"assets/assets/images/background.jpg": "e2e452a5fbfecedca5aaecd3000a66b2",
 "assets/assets/images/banner_balai.JPG": "6308f26de92a3d12f5cb1ed130300d05",
-"assets/assets/images/bg%2520techno%25202.jpeg": "7ff2621911f978e0004f9f979740ef90",
-"assets/assets/images/bg%2520techno.jpeg": "d6862a0de1992e24e8252716e34f1824",
 "assets/assets/images/call-center.png": "1b4f345080c8830d8b9390ddd7222b64",
 "assets/assets/images/culinary.png": "58ab54f16017bf8c21f6b9cc03e51962",
 "assets/assets/images/email.png": "49b02990e2129cbc4e290159e8b628d8",
@@ -84,15 +80,15 @@ const RESOURCES = {"assets/AssetManifest.bin": "8213c746c58c544f446c3d1e4e740127
 "canvaskit/skwasm.worker.js": "89990e8c92bcb123999aa81f7e203b1c",
 "favicon.png": "68329f8a0770a78f309d34cac7ac3b94",
 "flutter.js": "f393d3c16b631f36852323de8e583132",
-"flutter_bootstrap.js": "f83fd7d3c1a5c633cc07db00893888a8",
+"flutter_bootstrap.js": "6c7c445d095570b785b353eadd5fe231",
 "icons/Icon-192.png": "98638e0145ede1f7064a3e4ca5dbbe00",
 "icons/Icon-512.png": "2199751aa1d0ade1454a7960ebe57392",
 "icons/Icon-maskable-192.png": "98638e0145ede1f7064a3e4ca5dbbe00",
 "icons/Icon-maskable-512.png": "2199751aa1d0ade1454a7960ebe57392",
 "index.html": "a8f5da4cccc3d67dbf814ed68a3d0730",
 "/": "a8f5da4cccc3d67dbf814ed68a3d0730",
-"main.dart.js": "bc0de90b6a5b2eb36cf1f02e2122b921",
-"manifest.json": "72c605a5b08e92f867cdd7e85d981163",
+"main.dart.js": "24290da48c3098dd4505d0197e83cff7",
+"manifest.json": "4c0ee98b898537c5acfc267a1e8bac3e",
 "version.json": "2b672b68db029651404d5d580522f800"};
 // The application shell files that are downloaded before a service worker can
 // start.
