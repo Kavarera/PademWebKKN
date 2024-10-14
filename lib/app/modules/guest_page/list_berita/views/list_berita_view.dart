@@ -7,7 +7,6 @@ import 'package:padem_arsip_digital/app/core/widgets/CustomTextField.dart';
 import 'package:padem_arsip_digital/app/models/news_model.dart';
 import 'package:padem_arsip_digital/app/modules/landing_page/controllers/landing_page_controller.dart';
 
-import '../../../../models/NewsModel.dart';
 import '../controllers/list_berita_controller.dart';
 
 class ListBeritaView extends GetView<ListBeritaController> {

@@ -50,8 +50,8 @@ class ProfileDusunView extends GetView<ProfileDusunController> {
                     spacing: 16,
                     runSpacing: 16,
                     children: [
-                      Image.asset(
-                        'assets/images/logo_padem.png',
+                      Image.network(
+                        'https://firebasestorage.googleapis.com/v0/b/padem-535a1.appspot.com/o/assets%2Flogo_padem.png?alt=media&token=cc72d613-c78a-442b-b82a-9c9b92490a72',
                         width: 360,
                       ),
                       Container(

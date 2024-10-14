@@ -35,7 +35,7 @@ Widget CustomCard(List<Map<String, dynamic>> items, double width) {
                       width: cardWidth, // Set the width explicitly
                       child: AspectRatio(
                         aspectRatio: ratio,
-                        child: Image.asset(
+                        child: Image.network(
                           item['pic']!,
                           fit: BoxFit.cover,
                         ),
